@@ -1,10 +1,10 @@
 source("https://rubygems.org")
 
-gem 'sinatra-contrib', require: 'sinatra/reloader', require: 'sinatra/base'
+gem 'sinatra-contrib', require: 'sinatra/reloader'
 gem 'sinatra-activerecord'
 gem 'rake'
 gem 'pg'
-gem 'sinatra'
+gem 'sinatra', require: 'sinatra/base'
 gem 'pry'
 
 group(:test) do
