@@ -7,5 +7,5 @@ class Session < ActiveRecord::Base
   validates(:zip, {:presence => true, :length => { :is => 5 }, :format => { :with => /\A\d+\z/, :message => "only allows numbers" }})
   validates(:date, :presence => true)
   validates(:time, :presence => true)
-  validates(:host :presence => true)
+  validates(:host_id, :presence => true)
 end
