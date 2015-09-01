@@ -1,0 +1,7 @@
+development:
+  adapter: postgresql
+  database: jam_development
+
+test:
+  adapter: postgresql
+  database: jam_test
