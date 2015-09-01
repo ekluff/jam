@@ -11,4 +11,9 @@ describe(User) do
   it { should validate_presence_of(:state) }
   it { should validate_presence_of(:zip) }
   it { should validate_presence_of(:password) }
+  it { should validate_length_of(:phone).is_equal_to(10) }
+  it { should validate_length_of(:state).is_equal_to(2) }
+  it { should validate_length_of(:zip).is_equal_to(5) }
+  it { should validate_length_of(:username).is_at_least(6).is_at_most(15) }
+  it { should validate_length_of(:password).is_at_least(8).is_at_most(15) }
 end
