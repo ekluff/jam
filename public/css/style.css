@@ -5,13 +5,28 @@
 
 a {
   cursor: default;
+  text-decoration: none;
+  color: #333;
 }
 
 a:hover {
   font-weight: 900;
   cursor: default;
+  text-decoration: none;
+  color: #333;
 }
 
 .row {
   margin-bottom: 0;
+}
+
+#about, #local, #instrument {
+  margin-top: 100px;
+}
+
+.fix-icon-nav {
+  top: 0;
+  left: 15%;
+  width: 70%;
+  position: fixed;
 }
