@@ -1,4 +1,13 @@
-.logo-index {
-  width: 250px;
-  height: 250px;
+.header h1{
+  font-weight: 400;
+  text-align: center;
+}
+
+a {
+  cursor: default;
+}
+
+a:hover {
+  font-weight: 900;
+  cursor: default;
 }
