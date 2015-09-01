@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  has_many(:sessions)
   has_many(:instruments, :through => :sessions)
   validates(:first_name, {:presence => true, :format => { :with => /\A[a-zA-Z]+\z/, :message => "only allows letters" }})
   validates(:last_name, {:presence => true, :format => { :with => /\A[a-zA-Z]+\z/, :message => "only allows letters" }})
