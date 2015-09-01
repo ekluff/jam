@@ -7,3 +7,7 @@ before do
   cache_control :public, :no_cache
 	cache_control :views, :no_cache
 end
+
+get '/' do
+  erb(:index)
+end
