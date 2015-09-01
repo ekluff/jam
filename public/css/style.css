@@ -11,3 +11,7 @@ a:hover {
   font-weight: 900;
   cursor: default;
 }
+
+.row {
+  margin-bottom: 0;
+}
