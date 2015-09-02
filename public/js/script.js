@@ -12,6 +12,7 @@ var main = function(){
   });
 
   $('#fullpage').fullpage();
+  $('select').material_select();
   
 
 };
