@@ -2,6 +2,9 @@ require('bcrypt')
 require('pry')
 
 class User < ActiveRecord::Base
+  include Paperclip::Glue
+  attr_accesible :avatar
+  has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100>" }
   has_many(:sessions)
   has_many(:instruments, :through => :sessions)
   validates(:first_name, {:presence => true, :format => { :with => /\A[a-zA-Z\s\-]+\z/, :message => "only allows letters" }})
@@ -22,6 +25,10 @@ class User < ActiveRecord::Base
     else
       return false
     end
+  end
+
+  def create
+    @user = User.create( params[:user] )
   end
 
   private

@@ -33,6 +33,12 @@ get '/' do
   erb(:index)
 end
 
+get '/users/:id' do
+  id = params.fetch('id')
+  @user = User.find(id)
+  erb(:index)
+end
+
 post '/signup' do
   name = params.fetch('name')
   email = params.fetch('email')
