@@ -7,10 +7,12 @@ gem 'pg'
 gem 'sinatra'
 gem 'pry'
 gem 'bcrypt'
+gem 'geokit'
 
 group(:test) do
   gem 'rspec'
   gem 'capybara'
   gem 'launchy'
   gem 'shoulda-matchers'
+  gem 'shoulda-callback-matchers'
 end

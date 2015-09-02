@@ -8,4 +8,11 @@ class Session < ActiveRecord::Base
   validates(:date, :presence => true)
   validates(:time, :presence => true)
   validates(:host_id, :presence => true)
+  before_save(:update_coordinates)
+
+private
+  define_method(:update_coordinates) do
+    self.latitude=Geokit::Geocoders::GoogleGeocoder.geocode(address.concat(", ").concat(city).concat(", ").concat(state)).latitude
+    self.longitude=Geokit::Geocoders::GoogleGeocoder.geocode(address.concat(", ").concat(city).concat(", ").concat(state)).longitude
+  end
 end

@@ -1,4 +1,5 @@
 require('spec_helper')
+require('pry')
 
 describe(Session) do
   it { should belong_to(:user) }
@@ -16,4 +17,6 @@ describe(Session) do
   it { should_not allow_value("Oregon").for(:state).with_message("only allows capital letters") }
   it { should allow_value("92342").for(:zip) }
   it { should_not allow_value("hjkdah").for(:zip).with_message("only allows numbers") }
+
+  it { is_expected.to callback(:update_coordinates).before(:save) }
 end
