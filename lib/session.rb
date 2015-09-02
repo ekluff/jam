@@ -8,4 +8,10 @@ class Session < ActiveRecord::Base
   validates(:date, :presence => true)
   validates(:time, :presence => true)
   validates(:host_id, :presence => true)
+  before_save(:update_coordinates)
+
+private
+  define_method(:update_coordinates) do
+    #methods for adding lat/long
+  end
 end
