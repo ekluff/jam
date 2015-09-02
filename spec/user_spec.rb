@@ -18,9 +18,9 @@ describe(User) do
   it { should validate_length_of(:zip).is_equal_to(5) }
   it { should validate_length_of(:username).is_at_least(6).is_at_most(15) }
   it { should validate_length_of(:password).is_at_least(8).is_at_most(15) }
-  it { should allow_value("Jake").for(:first_name) }
+  it { should allow_value("Billie-Jean").for(:first_name) }
   it { should_not allow_value("B0b").for(:first_name).with_message("only allows letters") }
-  it { should allow_value("Jake").for(:last_name) }
+  it { should allow_value("Peters-Parker").for(:last_name) }
   it { should_not allow_value("B0b").for(:last_name).with_message("only allows letters") }
   it { should allow_value("Us3r_Name").for(:username) }
   it { should_not allow_value("User_Name!").for(:username).with_message("only allows letters, numbers and underscore") }
