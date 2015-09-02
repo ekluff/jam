@@ -1,4 +1,5 @@
 require('spec_helper')
+require('pry')
 
 describe(User) do
   it { should have_many(:instruments).through(:sessions) }
@@ -36,4 +37,6 @@ describe(User) do
   it { should_not allow_value("hjkdah").for(:zip).with_message("only allows numbers") }
   it { should allow_value("ter5!4dff").for(:password) }
   it { should_not allow_value("djdjdjd%%%%").for(:password).with_message("must have at least 1 number") }
+
+  it { is_expected.to callback(:capitalize_name).before(:save) }
 end
