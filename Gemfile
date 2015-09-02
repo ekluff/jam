@@ -6,6 +6,7 @@ gem 'rake'
 gem 'pg'
 gem 'sinatra', require: 'sinatra/base'
 gem 'pry'
+gem 'bcrypt'
 
 group(:test) do
   gem 'rspec'
