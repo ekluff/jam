@@ -74,6 +74,7 @@ a {
   cursor: default;
   text-decoration: none;
   color: #333;
+  transition:.5s ease;
 }
 
 a:hover {
@@ -81,6 +82,7 @@ a:hover {
   cursor: default;
   text-decoration: none;
   color: #333;
+  transition:.5s ease;
 }
 
 h3 {
@@ -109,4 +111,41 @@ h3 {
   left: 15%;
   width: 70%;
   position: fixed;
+}
+
+/*forms*/
+
+/* label color */
+.input-field label {
+  color: #3f3f3f;
+}
+
+.input-field input[type=text] {
+  margin-left: 10%;
+  color: #3f3f3f;
+}
+
+
+/* label focus color */
+.input-field input[type=text]:focus + label {
+  color: #bf360c;
+}
+/* label underline focus color */
+.input-field input[type=text]:focus {
+  border-bottom: 1px solid #000;
+  box-shadow: 0 1px 0 0 #000;
+}
+/* valid color */
+.input-field input[type=text].valid {
+  border-bottom: 1px solid #000;
+  box-shadow: 0 1px 0 0 #000;
+}
+/* invalid color */
+.input-field input[type=text].invalid {
+  border-bottom: 1px solid #000;
+  box-shadow: 0 1px 0 0 #000;
+}
+/* icon prefix focus color */
+.input-field .prefix.active {
+  color: #000;
 }
