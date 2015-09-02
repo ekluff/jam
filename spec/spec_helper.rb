@@ -10,15 +10,3 @@ Bundler.require(:default, :test)
 # require('./app')
 
 Dir[File.dirname(__FILE__) + '/../lib/*.rb'].each { |file| require file }
-#
-#
-# RSpec.configure do |config|
-#   config.after(:each) do
-#     Band.all().each() do |recipe|
-#       recipe.destroy()
-#     end
-#     Venue.all.each do |ingredient|
-#       ingredient.destroy
-#     end
-#   end
-# end
