@@ -1,7 +1,42 @@
+body {
+  background: url('/img/Hexagon-1.jpg');
+  background-size: cover;
+  background-position: center center;
+  color: #333;
+}
+
+.brand-logo {
+  margin-left: 2%;
+}
+
 .header h1{
   font-weight: 400;
   text-align: center;
+  font-size: 8rem;
+  font-family: 'Aldrich', sans-serif;
+  margin-bottom: -1%;
+
 }
+
+.header img {
+  width: 20%;
+  margin-left:41%;
+}
+
+.white-transparent {
+  background: rgba(255, 255, 255, 0.5)
+}
+
+.text-area {
+  margin-left: 3%;
+  margin-right: 3%;
+}
+
+.bold {
+  font-weight: 600;
+}
+
+
 
 a {
   cursor: default;
@@ -16,12 +51,29 @@ a:hover {
   color: #333;
 }
 
+h3 {
+  font-weight: 600;
+}
+
 .row {
   margin-bottom: 0;
 }
 
 #about, #local, #instrument {
   margin-top: 100px;
+}
+
+#about, #local, #instrument p{
+  font-size:2rem;
+}
+
+.icon-xl {
+  font-size: 36px;
+}
+
+.btn-xl {
+  width: 12rem;
+  height: 12rem;
 }
 
 .fix-icon-nav {
