@@ -8,6 +8,7 @@ gem 'sinatra'
 gem 'pry'
 gem 'bcrypt'
 gem 'geokit'
+gem 'paperclip', '~> 2.0'
 
 group(:test) do
   gem 'rspec'
