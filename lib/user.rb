@@ -2,6 +2,7 @@ require('bcrypt')
 require('pry')
 
 class User < ActiveRecord::Base
+  include Paperclip::Glue
   has_many(:sessions)
   has_many(:instruments, :through => :sessions)
   has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100>" }
