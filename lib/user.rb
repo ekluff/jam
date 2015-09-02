@@ -4,6 +4,7 @@ require('pry')
 class User < ActiveRecord::Base
   has_many(:sessions)
   has_many(:instruments, :through => :sessions)
+  has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100>" }
   validates(:first_name, {:presence => true, :format => { :with => /\A[a-zA-Z\s\-]+\z/, :message => "only allows letters" }})
   validates(:last_name, {:presence => true, :format => { :with => /\A[a-zA-Z\s\-]+\z/, :message => "only allows letters" }})
   validates(:username, {:presence => true, :uniqueness => true, :length => { :minimum => 6, :maximum => 15 }, :format => { :with => /\A\w+\z/, :message => "only allows letters, numbers and underscore" }})
