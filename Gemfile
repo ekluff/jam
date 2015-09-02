@@ -4,8 +4,9 @@ gem 'sinatra-contrib', require: 'sinatra/reloader'
 gem 'sinatra-activerecord'
 gem 'rake'
 gem 'pg'
-gem 'sinatra', require: 'sinatra/base'
+gem 'sinatra'
 gem 'pry'
+gem 'bcrypt'
 
 group(:test) do
   gem 'rspec'

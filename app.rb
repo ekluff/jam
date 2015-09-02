@@ -3,8 +3,9 @@ Bundler.require :default
 
 Dir[File.dirname(__FILE__) + '/lib/*.rb'].each { |file| require file }
 
+require 'sinatra/base'
+
 enable :sessions
-set :session_secret, 'womb@tduckp!gcow'
 
 helpers do
 
