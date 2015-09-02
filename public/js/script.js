@@ -11,6 +11,8 @@ var main = function(){
     };
   });
 
+  $('select').material_select();
+
   $('#fullpage').fullpage();
 
   $('.modal-trigger').leanModal({
