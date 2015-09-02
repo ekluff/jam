@@ -69,3 +69,15 @@ get '/logout' do
   session[:username] = nil
   redirect('/')
 end
+
+get '/jams' do
+  @sessions = Session.all()
+  erb(:jams)
+end
+
+# post '/jams/instruments' do
+#   instrument_id = params.fetch('instrument_id').to_i()
+#   instrument = Instrument.find(instrument_id)
+#   @sessions_instrument = instrument.sessions()
+#   redirect '/jams'
+# end
