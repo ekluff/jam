@@ -14,8 +14,6 @@ class User < ActiveRecord::Base
   validates(:state, {:presence => true, :length => { :is => 2 }, :format => { :with => /\A[A-Z]+\z/, :message => "only allows capital letters" }})
   validates(:zip, {:presence => true, :length => { :is => 5 }, :format => { :with => /\A\d+\z/, :message => "only allows numbers" }})
   validates(:password, {:presence => true, :format => { :with => /\d/, :message => "must have at least 1 number" }, :length => {:minimum => 8, :maximum => 15 }})
-  # need to move password confirmation to app.rb to allow for encryption
-  validates(:password_confirm, :uniqueness => true)
   before_save(:capitalize_name)
 
   def authenticate(entered_password)

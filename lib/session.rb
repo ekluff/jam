@@ -12,6 +12,7 @@ class Session < ActiveRecord::Base
 
 private
   define_method(:update_coordinates) do
-    #methods for adding lat/long
+    self.latitude=Geokit::Geocoders::GoogleGeocoder.geocode(address.concat(", ").concat(city).concat(", ").concat(state)).latitude
+    self.longitude=Geokit::Geocoders::GoogleGeocoder.geocode(address.concat(", ").concat(city).concat(", ").concat(state)).longitude
   end
 end
