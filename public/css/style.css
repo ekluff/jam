@@ -14,23 +14,33 @@ nav {
   position: relative;
   height: 100%;
   width: 3rem;
-  margin: auto 2%;
-  /*div not centered vertically. to solve later*/
+  margin: auto 0.5rem;
 }
 
 .brand-logo img {
-  height: 4rem;
-  width: 3rem;
+  height: 80%;
+  width: auto;
   position: absolute;
-  left: 0;
-  -webkit-transition: opacity 0.5s ease-in-out;
-  -moz-transition: opacity 0.5s ease-in-out;
-  -o-transition: opacity 0.5s ease-in-out;
-  transition: opacity 0.5s ease-in-out;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  -webkit-transition: opacity 0.3s ease-in-out;
+  -moz-transition: opacity 0.3s ease-in-out;
+  -o-transition: opacity 0.3s ease-in-out;
+  transition: opacity 0.3s ease-in-out;
 }
 
 .brand-logo img.bottom:hover {
   opacity: 0;
+}
+
+#nav-mobile {
+  display: inline-block;
+  width: 25%;
+}
+
+#nav-mobile li {
+  width: 33.3%;
 }
 
 .header h1{
