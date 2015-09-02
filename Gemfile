@@ -7,6 +7,7 @@ gem 'pg'
 gem 'sinatra', require: 'sinatra/base'
 gem 'pry'
 gem 'bcrypt'
+gem 'geokit'
 
 group(:test) do
   gem 'rspec'
