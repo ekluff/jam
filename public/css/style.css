@@ -29,7 +29,14 @@ body {
 
 .text-area {
   margin-left: 3%;
+  margin-right: 3%;
 }
+
+.bold {
+  font-weight: 600;
+}
+
+
 
 a {
   cursor: default;
@@ -44,12 +51,29 @@ a:hover {
   color: #333;
 }
 
+h3 {
+  font-weight: 600;
+}
+
 .row {
   margin-bottom: 0;
 }
 
 #about, #local, #instrument {
   margin-top: 100px;
+}
+
+#about, #local, #instrument p{
+  font-size:2rem;
+}
+
+.icon-xl {
+  font-size: 36px;
+}
+
+.btn-xl {
+  width: 12rem;
+  height: 12rem;
 }
 
 .fix-icon-nav {
