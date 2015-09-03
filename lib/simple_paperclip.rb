@@ -1,33 +1,24 @@
 # == Paperclip without ActiveRecord
 #
-# Simple and lightweight object that can use Paperclip
-#
-#
-# Customized part can be extracted in another class which
-# would inherit from SimplePaperclip.
-#
-#   class MyClass < SimplePaperclip
-#     attr_accessor :image_file_name # :<atached_file_name>_file_name
-#     has_attached_file :image, styles: { medium: "300x300>", thumb: "100x100>" }
-#   end
-#
-# author : Bastien Gysler <basgys@gmail.com>
-class Simplepaperclip
-  extend ActiveModel::Naming
-  extend ActiveModel::Callbacks
+# Original: https://gist.github.com/basgys/5712426
 
-  include ActiveModel::Validations
-  include Paperclip::Glue
+require 'active_model/naming'
+require 'active_model/callbacks'
+require 'active_model/validations'
+require 'paperclip'
 
-  # Paperclip required callbacks
-  define_model_callbacks :save, only: [:after]
-  define_model_callbacks :destroy, only: [:before, :after]
+module Simplepaperclip
+  def self.included(base)
+    base.extend ActiveModel::Naming
+    base.extend ActiveModel::Callbacks
 
-  # Paperclip attached file example
-  # -- Customize here --
-  attr_accessor :image_file_name # :<atached_file_name>_file_name
-  has_attached_file :image, styles: { medium: "300x300>", thumb: "100x100>" }
-  # -- /Customize here --
+    base.send :include, ActiveModel::Validations
+    base.send :include, Paperclip::Glue
+
+    # Paperclip required callbacks
+    base.define_model_callbacks :save, only: [:after]
+    base.define_model_callbacks :destroy, only: [:before, :after]
+  end
 
   # ActiveModel requirements
   def to_model

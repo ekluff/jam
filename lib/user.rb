@@ -1,16 +1,14 @@
 require('bcrypt')
 require('pry')
+require_relative 'simple_paperclip'
 
 class User < ActiveRecord::Base
-  include Simplepaperclip
 
   attr_accessor :image_file_name # :<atached_file_name>_file_name
 
-  has_attached_file :image, :styles => { :medium => "300x300>", :thumb => "100x100>" }
-  validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
-
   has_many(:sessions)
   has_many(:instruments, :through => :sessions)
+
   validates(:first_name, {:presence => true, :format => { :with => /\A[a-zA-Z\s\-]+\z/, :message => "only allows letters" }})
   validates(:last_name, {:presence => true, :format => { :with => /\A[a-zA-Z\s\-]+\z/, :message => "only allows letters" }})
   validates(:username, {:presence => true, :uniqueness => true, :length => { :minimum => 6, :maximum => 15 }, :format => { :with => /\A\w+\z/, :message => "only allows letters, numbers and underscore" }})
@@ -22,6 +20,11 @@ class User < ActiveRecord::Base
   validates(:zip, {:presence => true, :length => { :is => 5 }, :format => { :with => /\A\d+\z/, :message => "only allows numbers" }})
   validates(:password, {:presence => true, :format => { :with => /\d/, :message => "must have at least 1 number" }, :length => {:minimum => 8, :maximum => 15 }})
   before_save(:capitalize_name)
+
+  include Simplepaperclip
+
+  has_attached_file :image, :styles => { :medium => "300x300>", :thumb => "100x100>" }
+  validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
 
   def authenticate(entered_password)
     if BCrypt::Password.new(self.password) == entered_password
