@@ -2,7 +2,8 @@ require('spec_helper')
 require('pry')
 
 describe(User) do
-  it { should have_many(:instruments).through(:sessions) }
+  it { should have_and_belong_to_many(:instruments) }
+  it { should have_and_belong_to_many(:sessions) }
 
   it { should validate_presence_of(:first_name) }
   it { should validate_presence_of(:last_name) }

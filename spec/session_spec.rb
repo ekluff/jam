@@ -2,8 +2,8 @@ require('spec_helper')
 require('pry')
 
 describe(Session) do
-  it { should belong_to(:user) }
-  it { should belong_to(:instrument) }
+  it { should have_and_belong_to_many(:instruments) }
+  it { should have_and_belong_to_many(:users) }
 
   it { should validate_presence_of(:address) }
   it { should validate_presence_of(:city) }

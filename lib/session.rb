@@ -1,6 +1,6 @@
 class Session < ActiveRecord::Base
-  belongs_to(:user)
-  belongs_to(:instrument)
+  has_and_belongs_to_many(:instruments)
+  has_and_belongs_to_many(:users)
   validates(:address, :presence => true)
   validates(:city, {:presence => true, :format => { :with => /\A[A-Za-z\s]+\z/, :message => "only allows letters" }})
   validates(:state, {:presence => true, :length => { :is => 2 }, :format => { :with => /\A[A-Z]+\z/, :message => "only allows capital letters" }})

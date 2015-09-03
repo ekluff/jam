@@ -6,8 +6,8 @@ class User < ActiveRecord::Base
 
   attr_accessor :image_file_name # :<atached_file_name>_file_name
 
-  has_many(:sessions)
-  has_many(:instruments, :through => :sessions)
+  has_and_belongs_to_many(:instruments)
+  has_and_belongs_to_many(:sessions)
 
   validates(:first_name, {:presence => true, :format => { :with => /\A[a-zA-Z\s\-]+\z/, :message => "only allows letters" }})
   validates(:last_name, {:presence => true, :format => { :with => /\A[a-zA-Z\s\-]+\z/, :message => "only allows letters" }})
