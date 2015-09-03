@@ -6331,9 +6331,9 @@ textarea {
   background-color: transparent; }
   textarea.materialize-textarea {
     overflow-y: hidden;
-    /* prevents scroll bar flash */
+     prevents scroll bar flash
     padding: 1.6rem 0;
-    /* prevents text jump on Enter keypress */
+     prevents text jump on Enter keypress
     resize: none;
     min-height: 3rem; }
 
