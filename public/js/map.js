@@ -13,10 +13,10 @@ function initMap() {
 
   var latitudeArr = document.getElementsByClassName('lat')
   var longitudeArr = document.getElementsByClassName('lng')
-  var sessionDate = document.getElementsByClassName('date')
-  var sessionID = document.getElementsByClassName('id')
-  var sessionTime = document.getElementsByClassName('time')
-  var sessionInstrument = document.getElementsByClassName('instrument')
+  // var sessionDate = document.getElementsByClassName('date')
+  // var sessionID = document.getElementsByClassName('id')
+  // var sessionTime = document.getElementsByClassName('time')
+  // var sessionInstruments = document.getElementsByClassName('instruments')
 
   for(var i = 0; i < latitudeArr.length; i++){
     addMarker({lat: parseFloat(latitudeArr[i].innerHTML), lng: parseFloat(longitudeArr[i].innerHTML)}, sessionMap)
@@ -24,22 +24,22 @@ function initMap() {
 
 
 
-  var contentString = '<div id="content">'+
-  '<div id="siteNotice">'+
-  '</div>'+
-  '<h3><a href="/jams/'+
-  sessionID[i]+
-  '">'+
-  sessionDate[i]+
-  '</a></h3>'+
-  '<p>'+
-  sessionTime[i]+
-  '</p>'+
-  '<p>'+
-  sessionInstrument[i]+
-  '</p>'+
-  '</div>'+
-  '</div>';
+  // var contentString = '<div id="content">'+
+  // '<div id="siteNotice">'+
+  // '</div>'+
+  // '<h3><a href="/jams/'+
+  // sessionID[i]+
+  // '">'+
+  // sessionDate[i]+
+  // '</a></h3>'+
+  // '<p>'+
+  // sessionTime[i]+
+  // '</p>'+
+  // '<p>'+
+  // sessionInstruments[i]+
+  // '</p>'+
+  // '</div>'+
+  // '</div>';
 
   var infowindow = new google.maps.InfoWindow({
     content: contentString
@@ -52,9 +52,9 @@ function initMap() {
       map: map,
       animation: google.maps.Animation.DROP
     });
-    marker.addListener('click', function() {
-      infowindow.open(map, marker);
-    });
+    // marker.addListener('click', function() {
+    //   infowindow.open(map, marker);
+    // });
   }
 
 
