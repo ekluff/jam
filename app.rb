@@ -43,6 +43,28 @@ get '/users/:id' do
   erb(:profile)
 end
 
+# patch '/users/:id/image/change' do
+#   # def update
+#   #   @user = user.update(params[:user])
+#   # end
+#
+#   def create
+#     @user = user.create(params[:user])
+#   end
+#
+#   id = params.fetch('id')
+#   user = User.find(id)
+#   image = params.fetch('image')
+#
+#   user.image = params[:image]
+#   #image[:tempfile]     = params[:image][:tempfile],
+#   #image[:filename]     = params[:image][:filename],
+#   #image[:content_type] = params[:image][:type],
+#   #image[:size]         = params[:image][:tempfile].size
+#   user.save
+#   binding.pry
+#
+# end
 
 get '/signup' do
   erb(:signup)

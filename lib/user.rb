@@ -3,7 +3,7 @@ require('pry')
 
 class User < ActiveRecord::Base
 
-  attr_accessor :image_file_name # :<atached_file_name>_file_name
+  attr_accessor :image
 
   has_many(:sessions)
   has_many(:instruments, :through => :sessions)
