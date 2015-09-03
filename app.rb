@@ -37,8 +37,6 @@ get '/users/:id' do
   @user = User.find(params.fetch('id'))
   if session[:user] == @user
     @profile_owner
-  else
-    @profile_viewer
   end
   erb(:profile)
 end
@@ -46,6 +44,10 @@ end
 
 get '/signup' do
   erb(:signup)
+end
+
+get '/jams/create' do
+  erb(:jams_create)
 end
 
 # get '/users/test' do
@@ -72,7 +74,7 @@ post '/signup' do
   password_hash = BCrypt::Password.create(password)
   @user = User.create({:first_name => first_name, :last_name => last_name, :email => email, :username => username, :password => password_hash, :phone => phone, :address => address, :city => city, :state => state, :zip => zip})
   if @user.save()
-    redirect "/user/#{@user.id}"
+    redirect "/users/#{@user.id}"
   else
     erb(:errors)
   end
@@ -84,7 +86,7 @@ post '/login' do
   @user = User.find_by(:email => email)
   if @user.authenticate(password)
     session[:user] = @user
-    redirect "/user/#{@user.id}"
+    redirect "/users/#{@user.id}"
   else
     erb(:errors)
   end
