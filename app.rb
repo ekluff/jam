@@ -48,8 +48,17 @@ post '/signup' do
   email = params.fetch('email')
   password = params.fetch('password')
   password_confirmation = params.fetch('password_confirmation')
+  phone = params.fetch('phone').gsub([\D], "")
+  address = params.fetch('address')
+  city = params.fetch('city').capitalize
+  state = params.fetch('state').upcase
+  zip = params.fetch('zip').gsub([\D], "")
+  if password != password_confirmation
+    @password_confirmation_error
+    erb(:errors)
+  end
   password_hash = BCrypt::Password.create(password)
-  @user = User.create({:name => name, :email => email, :password => password_hash})
+  @user = User.create({:name => name, :email => email, :password => password_hash, :phone => phone, :address => address, :city => city, :state => state, :zip => zip})
   if @user.save()
     redirect "/user/#{@user.id}"
   else
