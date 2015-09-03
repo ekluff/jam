@@ -1,6 +1,5 @@
 require('bcrypt')
 require('pry')
-require 'paperclip'
 
 class User < ActiveRecord::Base
 
@@ -18,7 +17,7 @@ class User < ActiveRecord::Base
   validates(:city, {:presence => true, :format => { :with => /\A[A-Za-z\s]+\z/, :message => "only allows letters" }})
   validates(:state, {:presence => true, :length => { :is => 2 }, :format => { :with => /\A[A-Z]+\z/, :message => "only allows capital letters" }})
   validates(:zip, {:presence => true, :length => { :is => 5 }, :format => { :with => /\A\d+\z/, :message => "only allows numbers" }})
-  validates(:password, {:presence => true, :format => { :with => /\d/, :message => "must have at least 1 number" }, :length => {:minimum => 8, :maximum => 15 }})
+  validates(:password, {:presence => true, :format => { :with => /\d/, :message => "must have at least 1 number" }, :length => {:minimum => 8}})
   before_save(:capitalize_name)
 
   include Paperclip::Glue
@@ -32,10 +31,6 @@ class User < ActiveRecord::Base
     else
       return false
     end
-  end
-
-  def create
-    @user = User.create( params[:user] )
   end
 
   private
