@@ -23,13 +23,6 @@ var main = function(){
     }
   );
 
-  $('select').material_select();
-
 };
 
 $(document).ready(main);
-
-
-
-// animate({top: 0, left: 0, right: 0}, 500)
-// $('.icon-nav').css({"position":"fixed"})

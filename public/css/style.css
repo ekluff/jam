@@ -8,7 +8,9 @@ body {
 nav {
   position: fixed;
   z-index: 1000;
+  margin-bottom: auto;
 }
+
 
 .brand-logo {
   position: relative;
@@ -49,12 +51,17 @@ nav {
   font-size: 8rem;
   font-family: 'Aldrich', sans-serif;
   margin-bottom: -1%;
+}
 
+.header h5{
+  font-weight: 600;
+  text-align: center;
+  /*font-family: 'Aldrich', sans-serif;*/
 }
 
 .header img {
-  width: 20%;
-  margin-left:40%;
+  width: 70%;
+  margin-left:10%;
 }
 
 .white-transparent {
@@ -107,8 +114,8 @@ h3 {
   font-size:1.2rem;
 }
 
-.icon-xl {
-  font-size: 36px;
+.btn-lg:hover {
+  background: #fff;
 }
 
 .fix-icon-nav {
@@ -123,6 +130,7 @@ h3 {
 .input-field label {
   color: #3f3f3f;
 }
+
 /* label focus color */
 .input-field input[type=text]:focus + label {
   color: #d84315;
@@ -177,6 +185,7 @@ h3 {
 .select-wrapper {
   z-index: 10000
   position:absolute;
+}
 
 #map-container {
   height: 400px;
@@ -199,4 +208,9 @@ h3 {
 h1, h2, h3, h4, h5, h6, p, i {
   cursor: default;
 
+}
+
+#dropdown {
+  overflow:visible;
+  position:relative;
 }
