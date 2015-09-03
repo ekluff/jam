@@ -23,7 +23,6 @@ helpers do
 
 end
 
-
 before do
   cache_control :public, :no_cache
 	cache_control :views, :no_cache
@@ -41,6 +40,47 @@ get '/users/:id' do
   erb(:profile)
 end
 
+# patch '/users/:id/image/change' do
+#   # def update
+#   #   @user = user.update(params[:user])
+#   # end
+#
+#   def create
+#     @user = user.create(params[:user])
+#   end
+#
+#   id = params.fetch('id')
+#   user = User.find(id)
+#   image = params.fetch('image')
+#
+#   user.image = params[:image]
+#   #image[:tempfile]     = params[:image][:tempfile],
+#   #image[:filename]     = params[:image][:filename],
+#   #image[:content_type] = params[:image][:type],
+#   #image[:size]         = params[:image][:tempfile].size
+#   user.save
+#   binding.pry
+#
+# end
+
+patch '/users/:id/update' do
+  id = params.fetch('id')
+  user = User.find(id)
+
+  first_name = params.fetch('first_name')
+  last_name = params.fetch('last_name')
+  email = params.fetch('email')
+  phone = params.fetch('phone')
+  username = params.fetch('username')
+  address = params.fetch('address')
+  city = params.fetch('city')
+  state = params.fetch('state')
+  zip = params.fetch('zip')
+
+  user.update({ first_name: first_name, last_name: last_name, email: email, phone: phone, username: username, address: address, city: city, state: state, zip: zip })
+
+  redirect "/users/#{id}"
+end
 
 get '/signup' do
   erb(:signup)

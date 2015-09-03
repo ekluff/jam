@@ -257,13 +257,17 @@ h3 {
   margin-left:48%;
 }
 
-h1, h2, h3, h4, h5, h6, p, i {
+html {
   cursor: default;
 }
 
-/*.instrument-card {
-  height: 40rem;
-}*/
+.padded-row {
+  padding: 1rem 0;
+}
+
+.card-content {
+  overflow: auto;
+}
 
 .instrument-div {
   margin-top:5%;
@@ -274,7 +278,3 @@ h1, h2, h3, h4, h5, h6, p, i {
   margin-bottom: 2%;
   margin-right: 2%;
 }
-
-/*.jam-card {
-  margin-top:5%;
-}*/
