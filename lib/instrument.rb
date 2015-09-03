@@ -1,5 +1,5 @@
 class Instrument < ActiveRecord::Base
-  has_many(:sessions)
-  has_many(:users, :through => :sessions)
+  has_and_belongs_to_many(:users)
+  has_and_belongs_to_many(:sessions)
   validates(:name, :presence => true)
 end
