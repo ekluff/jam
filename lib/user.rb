@@ -1,6 +1,6 @@
 require('bcrypt')
 require('pry')
-require_relative 'simple_paperclip'
+require 'paperclip'
 
 class User < ActiveRecord::Base
 
@@ -21,7 +21,7 @@ class User < ActiveRecord::Base
   validates(:password, {:presence => true, :format => { :with => /\d/, :message => "must have at least 1 number" }, :length => {:minimum => 8, :maximum => 15 }})
   before_save(:capitalize_name)
 
-  include Simplepaperclip
+  include Paperclip::Glue
 
   has_attached_file :image, :styles => { :medium => "300x300>", :thumb => "100x100>" }
   validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/

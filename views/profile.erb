@@ -13,7 +13,10 @@
 
       <div class="row">
 
-        <p class="text-area col s12 center-align">Free on Wednesday night? Find who likes to jam then.<br>Don't wanna drag your stuff all over? See who's playing close by.<br>You play the keyboard like a champ but feel like trying the violin? See who needs a violinist.</p>
+        <form class="" action="users/:id/avatar/change" method="post">
+          <input type="file" name="name" value="">
+        </form>
+
 
       </div>
 
@@ -29,12 +32,3 @@
       <p class="text-area col s12 center-align">Design your session the way <span id="you">you</span> want.<br>Choose the instruments, the time, and the place, and you're ready to go.</p>
     </div>
   </div>
-
-
-<%= form_for :user, @user, :url => user_path, :html => { :multipart => true } do |form| %>
-  <%= form.file_field :avatar %>
-<% end %>
-
-<%= image_tag @user.avatar.url %>
-<%= image_tag @user.avatar.url(:medium) %>
-<%= image_tag @user.avatar.url(:thumb) %>

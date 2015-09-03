@@ -9,6 +9,9 @@ gem 'pry'
 gem 'bcrypt'
 gem 'geokit'
 gem 'paperclip', '~> 2.0'
+gem 'activerecord'
+gem 'activesupport'
+
 
 group(:test) do
   gem 'rspec'
