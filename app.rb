@@ -48,11 +48,11 @@ post '/signup' do
   email = params.fetch('email')
   password = params.fetch('password')
   password_confirmation = params.fetch('password_confirmation')
-  phone = params.fetch('phone').gsub([\D], "")
+  phone = params.fetch('phone').gsub(/([\D])/, "")
   address = params.fetch('address')
   city = params.fetch('city').capitalize
   state = params.fetch('state').upcase
-  zip = params.fetch('zip').gsub([\D], "")
+  zip = params.fetch('zip').gsub(/([\D])/, "")
   if password != password_confirmation
     @password_confirmation_error
     erb(:errors)
