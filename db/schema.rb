@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150903173324) do
+ActiveRecord::Schema.define(version: 20150903213037) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,9 +22,21 @@ ActiveRecord::Schema.define(version: 20150903173324) do
     t.datetime "updated_at"
   end
 
-  create_table "sessions", force: :cascade do |t|
+  create_table "instruments_sessions", force: :cascade do |t|
+    t.integer  "instrument_id"
+    t.integer  "session_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "instruments_users", force: :cascade do |t|
     t.integer  "instrument_id"
     t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "sessions", force: :cascade do |t|
     t.string   "address"
     t.string   "city"
     t.string   "state"
@@ -36,6 +48,13 @@ ActiveRecord::Schema.define(version: 20150903173324) do
     t.datetime "updated_at"
     t.float    "latitude"
     t.float    "longitude"
+  end
+
+  create_table "sessions_users", force: :cascade do |t|
+    t.integer  "session_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "users", force: :cascade do |t|

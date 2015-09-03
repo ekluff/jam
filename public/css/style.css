@@ -197,6 +197,21 @@ h3 {
   color: #3f3f3f;
 }
 
+#pick-a-time {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid #B2B2B2;
+  line-height: 2.85;
+  margin-bottom: 2%;
+}
+
+#pick-a-time:focus {
+  border-bottom: 1px solid #d84315;
+  box-shadow: 0 1px 0 0 #d84315;
+  border:none;
+}
+
+
 /*style caret for state dropdown*/
 .select-wrapper i {
   position: absolute;
@@ -231,6 +246,17 @@ h3 {
   text-align: center;
 }
 
+.up-arrow {
+  display: block;
+  right: 0;
+  left: 0;
+  text-align: center;
+}
+
+.center-arrow {
+  margin-left:48%;
+}
+
 html {
   cursor: default;
 }
@@ -241,4 +267,14 @@ html {
 
 .card-content {
   overflow: auto;
+}
+
+.instrument-div {
+  margin-top:5%;
+}
+
+.remove_field {
+  color: #CC0000;
+  margin-bottom: 2%;
+  margin-right: 2%;
 }

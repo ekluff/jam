@@ -36,8 +36,6 @@ get '/users/:id' do
   @user = User.find(params.fetch('id'))
   if session[:user] == @user
     @profile_owner
-  else
-    @profile_viewer
   end
   erb(:profile)
 end
@@ -88,6 +86,18 @@ get '/signup' do
   erb(:signup)
 end
 
+get '/jams/new' do
+  @instruments = Instrument.all
+  erb(:jams_create)
+end
+
+post '/jams/new' do
+
+
+end
+
+
+
 # get '/users/test' do
 #   @user = User.create({first_name: "Evan", last_name: "Clough", username: 'ekluff', phone: 9712480214, email: 'ec437@comcast.net', address: '17243 Fernwood Drive', city: 'Lake Oswego', state: 'OR', zip: 97034, password: '18181818'})
 #   erb(:profile)
@@ -112,7 +122,7 @@ post '/signup' do
   password_hash = BCrypt::Password.create(password)
   @user = User.create({:first_name => first_name, :last_name => last_name, :email => email, :username => username, :password => password_hash, :phone => phone, :address => address, :city => city, :state => state, :zip => zip})
   if @user.save()
-    redirect "/user/#{@user.id}"
+    redirect "/users/#{@user.id}"
   else
     erb(:errors)
   end
@@ -124,7 +134,7 @@ post '/login' do
   @user = User.find_by(:email => email)
   if @user.authenticate(password)
     session[:user] = @user
-    redirect "/user/#{@user.id}"
+    redirect "/users/#{@user.id}"
   else
     erb(:errors)
   end
@@ -140,13 +150,7 @@ get '/jams' do
   erb(:jams)
 end
 
+
 get '/errors' do
   erb(:errors)
 end
-
-# post '/jams/instruments' do
-#   instrument_id = params.fetch('instrument_id').to_i()
-#   instrument = Instrument.find(instrument_id)
-#   @sessions_instrument = instrument.sessions()
-#   redirect '/jams'
-# end

@@ -5,8 +5,8 @@ class User < ActiveRecord::Base
 
   attr_accessor :image
 
-  has_many(:sessions)
-  has_many(:instruments, :through => :sessions)
+  has_and_belongs_to_many(:instruments)
+  has_and_belongs_to_many(:sessions)
 
   validates(:first_name, {:presence => true, :format => { :with => /\A[a-zA-Z\s\-]+\z/, :message => "only allows letters" }})
   validates(:last_name, {:presence => true, :format => { :with => /\A[a-zA-Z\s\-]+\z/, :message => "only allows letters" }})
@@ -17,7 +17,7 @@ class User < ActiveRecord::Base
   validates(:city, {:presence => true, :format => { :with => /\A[A-Za-z\s]+\z/, :message => "only allows letters" }})
   validates(:state, {:presence => true, :length => { :is => 2 }, :format => { :with => /\A[A-Z]+\z/, :message => "only allows capital letters" }})
   validates(:zip, {:presence => true, :length => { :is => 5 }, :format => { :with => /\A\d+\z/, :message => "only allows numbers" }})
-  validates(:password, {:presence => true, :format => { :with => /\d/, :message => "must have at least 1 number" }, :length => {:minimum => 8}})
+  validates(:password, {:presence => true, :format => { :with => /\d/, :message => "must have at least 1 number" }, :length => {:minimum => 8, :maximum => 15 }})
   before_save(:capitalize_name)
 
   include Paperclip::Glue

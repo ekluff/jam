@@ -1,0 +1,15 @@
+<% require('pry') %>
+<h1>Jam Sessions</h1>
+<div class="col s5 z-depth-3 maps right" id="map" style="width:800px;height:800px;">
+</div>
+
+
+<% if @sessions.any?() %>
+  <% @sessions.each() do |session| %>
+    <ol type="A">
+      <li><a href="/jams/<%= session.id %>"><%= session.address %>, <%= session.city %>, <%= session.state %> <%= session.zip %> (<%= session.date %>)</a></li>
+    </ol>
+    <p style="display:none;" class="lat"><%= session.latitude %></p>
+    <p style="display:none;" class="lng"><%= session.longitude %></p>
+  <% end %>
+<% end %>
