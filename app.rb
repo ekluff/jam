@@ -52,8 +52,22 @@ get '/jams/new' do
 end
 
 post '/jams/new' do
-
-
+  address = params.fetch('address')
+  city = params.fetch('city').capitalize
+  state = params.fetch('state').upcase
+  zip = params.fetch('zip').gsub(/([\D])/, "")
+  host_id = params.fetch('host_id')
+  date = params.fetch('date')
+  time = params.fetch('time')
+  @session = Session.create({:host_id => host_id, :address => address, :city => city, :state => state, :zip => zip, :date => date, :time => time})
+  if @session.save == false
+    erb(:errors)
+  end
+  instruments = params.fetch('instrument[]')
+  instruments.each do |instrument|
+    instrument.sessions << @session
+  end
+  redirect("/jams/#{@session.id}")
 end
 
 
