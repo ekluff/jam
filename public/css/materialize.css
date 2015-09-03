@@ -5874,8 +5874,8 @@ button.btn-floating {
 .dropdown-content {
   background-color: #fff;
   margin: 0;
-  display: none;
-  min-width: 100px;
+  display: inline-block;
+  width: 200px;
   max-height: 650px;
   overflow-y: auto;
   opacity: 0;

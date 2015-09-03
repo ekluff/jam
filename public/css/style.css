@@ -1,12 +1,12 @@
 body {
   background: url('/img/Hexagon-2.jpg');
   background-size: cover;
-  background-position: center center;
+  background-position: center;
+  /*background-repeat: no-repeat;*/
   color: #333;
 }
 
 nav {
-  position: fixed;
   z-index: 1000;
 }
 
@@ -30,6 +30,19 @@ nav {
   transition: opacity 0.3s ease-in-out;
 }
 
+#fullpage {
+  margin-top: -4%;
+}
+
+#jamdropdown {
+  min-width: 24.5%;
+  background-color: rgba(255, 255, 255, 0.5)
+}
+
+#jamdropdown a {
+  color: #d84315;
+}
+
 .brand-logo img.bottom:hover {
   opacity: 0;
 }
@@ -43,18 +56,23 @@ nav {
   width: 33.3%;
 }
 
+
 .header h1{
   font-weight: 400;
   text-align: center;
   font-size: 8rem;
   font-family: 'Aldrich', sans-serif;
   margin-bottom: -1%;
+}
 
+.header h5 {
+  font-weight: 600;
+  text-align:center;
 }
 
 .header img {
-  width: 20%;
-  margin-left:40%;
+  width: 70%;
+  margin-left:10%;
 }
 
 .white-transparent {

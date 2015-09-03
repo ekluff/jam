@@ -102,6 +102,8 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  activerecord
+  activesupport
   bcrypt
   capybara
   geokit
