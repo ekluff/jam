@@ -2,11 +2,12 @@ require('bcrypt')
 require('pry')
 
 class User < ActiveRecord::Base
-  include Paperclip::Glue
-  attr_accesible :avatar
-  
-  has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100>" }
-  validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
+  include Simplepaperclip
+
+  attr_accessor :image_file_name # :<atached_file_name>_file_name
+
+  has_attached_file :image, :styles => { :medium => "300x300>", :thumb => "100x100>" }
+  validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
 
   has_many(:sessions)
   has_many(:instruments, :through => :sessions)

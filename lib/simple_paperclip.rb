@@ -12,7 +12,7 @@
 #   end
 #
 # author : Bastien Gysler <basgys@gmail.com>
-class SimplePaperclip
+class Simplepaperclip
   extend ActiveModel::Naming
   extend ActiveModel::Callbacks
 
