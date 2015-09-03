@@ -46,10 +46,17 @@ get '/signup' do
   erb(:signup)
 end
 
-get '/jams/create' do
+get '/jams/new' do
   @instruments = Instrument.all
   erb(:jams_create)
 end
+
+post '/jams/new' do
+
+
+end
+
+
 
 # get '/users/test' do
 #   @user = User.create({first_name: "Evan", last_name: "Clough", username: 'ekluff', phone: 9712480214, email: 'ec437@comcast.net', address: '17243 Fernwood Drive', city: 'Lake Oswego', state: 'OR', zip: 97034, password: '18181818'})
