@@ -6,7 +6,6 @@ body {
 }
 
 nav {
-  position: fixed;
   z-index: 1000;
 }
 
@@ -28,6 +27,10 @@ nav {
   -moz-transition: opacity 0.3s ease-in-out;
   -o-transition: opacity 0.3s ease-in-out;
   transition: opacity 0.3s ease-in-out;
+}
+
+#fullpage {
+  margin-top: -4%;
 }
 
 #jamdropdown {

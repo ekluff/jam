@@ -25,19 +25,21 @@
       <li class="divider"></li>
       <li><a href="#">create a jam</a></li>
     </ul>
-    <nav>
-      <div class="nav-wrapper white">
-        <a href="/" class="brand-logo">
-          <img class="top" src="/img/jam3alt2.png" alt="logo"/>
-          <img class="bottom" src="/img/jam3brandlogobottom.png" alt="logo on hover"/>
-        </a>
-        <ul id="nav-mobile" class="right hide-on-med-and-down">
-          <li><a class='dropdown-button deep-orange-text text-darken-3 center-align' href='#jamdropdown' data-activates='jamdropdown'>Jam<i class="material-icons right">arrow_drop_down</i></a></li>
-          <li><a href="/signup" class="deep-orange-text text-darken-3 center-align">Sign Up</a></li>
-          <li><a href="#" class="deep-orange-text text-darken-3 center-align">Sign In</a></li>
-        </ul>
-      </div>
-    </nav>
+    <div class="navbar-fixed">
+      <nav>
+        <div class="nav-wrapper white">
+          <a href="/" class="brand-logo">
+            <img class="top" src="/img/jam3alt2.png" alt="logo"/>
+            <img class="bottom" src="/img/jam3brandlogobottom.png" alt="logo on hover"/>
+          </a>
+          <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li><a class='dropdown-button deep-orange-text text-darken-3 center-align' href='#jamdropdown' data-activates='jamdropdown'>Jam<i class="material-icons right">arrow_drop_down</i></a></li>
+            <li><a href="/signup" class="deep-orange-text text-darken-3 center-align">Sign Up</a></li>
+            <li><a href="#" class="deep-orange-text text-darken-3 center-align">Sign In</a></li>
+          </ul>
+        </div>
+      </nav>
+    </div>
 
       <%= yield %>
 
