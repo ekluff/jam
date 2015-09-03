@@ -249,3 +249,21 @@ h3 {
 h1, h2, h3, h4, h5, h6, p, i {
   cursor: default;
 }
+
+/*.instrument-card {
+  height: 40rem;
+}*/
+
+.instrument-div {
+  margin-top:5%;
+}
+
+.remove_field {
+  color: #CC0000;
+  margin-bottom: 2%;
+  margin-right: 2%;
+}
+
+/*.jam-card {
+  margin-top:5%;
+}*/

@@ -47,6 +47,7 @@ get '/signup' do
 end
 
 get '/jams/create' do
+  @instruments = Instrument.all
   erb(:jams_create)
 end
 

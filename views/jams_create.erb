@@ -1,48 +1,103 @@
-<div class="container">
+<div id="fullpage">
+  <div class="container section">
 
-  <div class="row">
-    <h2 class="col s12 deep-orange-text text-darken-4 center-align">CREATE A JAM</h2>
-  </div>
+    <div class="row jam-card">
+      <h2 class="col s12 deep-orange-text text-darken-4 center-align">CREATE A JAM</h2>
+    </div>
 
-  <div class="row">
-    <div class="col s12">
-      <div class="card white-transparent hoverable">
-        <div class="card-content grey-text text-darken-3">
-
-          <form class="col s12" action="/jams" method="post">
-            <div class="row">
-              <div class="input-field col s12 m6">
-                <i class="material-icons prefix">today</i>
-                <input name="date" type="date" class="datepicker" value="<%= Date.today %>"></input>
-                <label for="date">Time</label>
+    <div class="row">
+      <div class="col s12">
+        <div class="card white-transparent hoverable jam-card">
+          <div class="card-content grey-text text-darken-3">
+            <h5 class="deep-orange-text text-darken-3">PICK WHEN AND WHERE</h5>
+          <div class="row">
+            <form class="col s12" action="/jams" method="post">
+              <div class="row">
+                <div class="input-field col s12 m6">
+                  <i class="material-icons prefix">today</i>
+                  <input name="date" type="date" class="datepicker" value="<%= Date.today %>"></input>
+                  <label for="date">Time</label>
+                </div>
+                <div class="input-field col s12 m6">
+                  <i class="material-icons prefix">access_time</i>
+                  <input id="pick-a-time" name="time" value="08:30 PM"></input>
+                </div>
               </div>
-              <div class="input-field col s12 m6">
-                <i class="material-icons prefix">access_time</i>
-                <input id="pick-a-time" name="time" value="08:30 PM"></input>
+
+              <div class="row">
+                <div class="input-field col s12">
+                  <i class="material-icons prefix">my_location</i>
+                  <input id="icon-prefix" name="address" type="text" placeholder="">
+                  <label for="icon-prefix">Street</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s12 m4">
+                  <i class="material-icons prefix">place</i>
+                  <input id="icon-prefix" name="city" type="text" placeholder="">
+                  <label for="icon-prefix">City</label>
+                </div>
+                <div id="dropdown" class="input-field col s12 m4">
+                  <input id="icon-prefix" name="state" type="text" placeholder="">
+                  <label for="icon-prefix">State (abbrev.)</label>
+                </div>
+                <div class="input-field col s12 m4">
+                  <input id="icon-prefix" name="zip" type="text" placeholder="">
+                  <label for="icon-prefix">Zip</label>
+                </div>
               </div>
             </div>
-
-            <div class="row">
-              <div class="input-field col s12 m6">
-                <i class="material-icons prefix">email</i>
-                <input id="icon-prefix" name="email" type="email" placeholder="">
-                <label for="email">Email</label>
-              </div>
-              <div class="input-field col s12 m6">
-                <i class="material-icons prefix">phone</i>
-                <input id="icon-prefix" name="phone" type="tel" placeholder="">
-                <label for="phone">Phone (xxx-xxx-xxxx)</label>
-              </div>
-            </div>
-
+          </div>
         </div>
       </div>
-      <div class="row">
-        <div class="input-field col s12">
-          <button type="submit" class="waves-effect waves-light btn deep-orange darken-3 right">Submit</button>
-        </div>
-      </form>
-    </div>
+     </div>
+     <a href="#create_form_2"><i id="down-arrow" class="down-arrow medium deep-orange-text text-darken-3 material-icons">keyboard_arrow_down</i></a>
    </div>
-  </div>
+
+   <div class="container section" id="create_form_2">
+
+     <div class="row">
+       <div class="col s12">
+         <div class="card white-transparent hoverable instrument-card">
+           <div class="card-content grey-text text-darken-3">
+             <h5 class="deep-orange-text text-darken-3">PICK THE OTHER INSTRUMENTS</h5>
+                 <div class="row">
+                   <div class="input-field col s3 offset-s2">
+                    <% @instruments[0..9].each do |instrument| %>
+                      <div class="row">
+                        <input type="checkbox" name="instrument" id="instrument<%=instrument.id%>" />
+                        <label for="instrument<%=instrument.id%>" value="<%=instrument.id%>"><%= instrument.name %></label>
+                      </div>
+                    <% end %>
+                   </div>
+                   <div class="input-field col s3">
+                    <% @instruments[10..19].each do |instrument| %>
+                      <div class="row">
+                        <input type="checkbox" name="instrument" id="instrument<%=instrument.id%>" />
+                        <label for="instrument<%=instrument.id%>" value="<%=instrument.id%>"><%= instrument.name %></label>
+                      </div>
+                    <% end %>
+                   </div>
+                   <div class="input-field col s3">
+                    <% @instruments[20..29].each do |instrument| %>
+                      <div class="row">
+                        <input type="checkbox" name="instrument" id="instrument<%=instrument.id%>" />
+                        <label for="instrument<%=instrument.id%>" value="<%=instrument.id%>"><%= instrument.name %></label>
+                      </div>
+                    <% end %>
+                   </div>
+                 </div>
+                 <div class="row">
+                   <div class="input-field col s12">
+                     <button type="submit" class="waves-effect waves-light btn deep-orange darken-3 right" >JAM</button>
+                   </form>
+                   </div>
+                 </div>
+             </div>
+           </div>
+         </div>
+       </div>
+      </div>
+   </div>
+
 </div>
