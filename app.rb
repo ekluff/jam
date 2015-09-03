@@ -36,6 +36,7 @@ end
 
 get '/signup' do
   erb(:signup)
+end
 
 get '/users/:id' do
   id = params.fetch('id')
@@ -43,19 +44,19 @@ get '/users/:id' do
   erb(:index)
 end
 
-post '/signup' do
-  name = params.fetch('name')
-  email = params.fetch('email')
-  password = params.fetch('password')
-  password_confirmation = params.fetch('password_confirmation')
-  password_hash = BCrypt::Password.create(password)
-  @user = User.create({:name => name, :email => email, :password => password_hash})
-  if @user.save()
-    redirect "/user/#{@user.id}"
-  else
-    erb(:errors)
-  end
-end
+# post '/signup' do
+#   name = params.fetch('name')
+#   email = params.fetch('email')
+#   password = params.fetch('password')
+#   password_confirmation = params.fetch('password_confirmation')
+#   password_hash = BCrypt::Password.create(password)
+#   @user = User.create({:name => name, :email => email, :password => password_hash})
+#   if @user.save()
+#     redirect "/user/#{@user.id}"
+#   else
+#     erb(:errors)
+#   end
+# end
 
 post '/login' do
   email = params.fetch("email")

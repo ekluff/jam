@@ -25,8 +25,6 @@ var main = function(){
 
   $('select').material_select();
 
->>>>>>> e044a993850eb1816eb19cd6bbf21272f66086c8
-
 };
 
 $(document).ready(main);

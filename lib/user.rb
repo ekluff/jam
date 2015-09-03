@@ -1,13 +1,12 @@
-require('bcrypt')
-require('pry')
+# require('bcrypt')
 
 class User < ActiveRecord::Base
-  include Simplepaperclip
+  # include Simplepaperclip
 
-  attr_accessor :image_file_name # :<atached_file_name>_file_name
-
-  has_attached_file :image, :styles => { :medium => "300x300>", :thumb => "100x100>" }
-  validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
+  # attr_accessor :image_file_name # :<atached_file_name>_file_name
+  #
+  # has_attached_file :image, :styles => { :medium => "300x300>", :thumb => "100x100>" }
+  # validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
 
   has_many(:sessions)
   has_many(:instruments, :through => :sessions)
@@ -23,13 +22,13 @@ class User < ActiveRecord::Base
   validates(:password, {:presence => true, :format => { :with => /\d/, :message => "must have at least 1 number" }, :length => {:minimum => 8, :maximum => 15 }})
   before_save(:capitalize_name)
 
-  def authenticate(entered_password)
-    if BCrypt::Password.new(self.password) == entered_password
-      return true
-    else
-      return false
-    end
-  end
+  # def authenticate(entered_password)
+  #   if BCrypt::Password.new(self.password) == entered_password
+  #     return true
+  #   else
+  #     return false
+  #   end
+  # end
 
   def create
     @user = User.create( params[:user] )
