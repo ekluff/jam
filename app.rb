@@ -23,7 +23,6 @@ helpers do
 
 end
 
-
 before do
   cache_control :public, :no_cache
 	cache_control :views, :no_cache
@@ -65,6 +64,25 @@ end
 #   binding.pry
 #
 # end
+
+patch '/users/:id/update' do
+  id = params.fetch('id')
+  user = User.find(id)
+
+  first_name = params.fetch('first_name')
+  last_name = params.fetch('last_name')
+  email = params.fetch('email')
+  phone = params.fetch('phone')
+  username = params.fetch('username')
+  address = params.fetch('address')
+  city = params.fetch('city')
+  state = params.fetch('state')
+  zip = params.fetch('zip')
+
+  user.update({ first_name: first_name, last_name: last_name, email: email, phone: phone, username: username, address: address, city: city, state: state, zip: zip })
+
+  redirect "/users/#{id}"
+end
 
 get '/signup' do
   erb(:signup)

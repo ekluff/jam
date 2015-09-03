@@ -58,23 +58,24 @@
   </div>
 
   <div id="edit_profile" class="section">
-    <div class="row">
-      <h3 class="col s12 deep-orange-text text-darken-4 center-align">Edit Profile</h3>
-    </div>
-    <div class="row">
-      <div class="col s12">
-        <div class="card white-transparent hoverable">
-          <div class="card-content grey-text text-darken-3">
-            <form class="col s12" action="/signup" method="post">
+    <form class="col s12" action="/users/<%= @user.id %>/update" method="post">
+      <input type="hidden" name="_method" value="patch">
+      <div class="row">
+        <h3 class="col s12 deep-orange-text text-darken-4 center-align">Edit Profile</h3>
+      </div>
+      <div class="row">
+        <div class="col s12">
+          <div class="card white-transparent hoverable">
+            <div class="card-content grey-text text-darken-3">
               <div class="row">
                 <div class="input-field col s12 m6">
                   <i class="material-icons prefix">person</i>
-                  <input id="icon-prefix" name="first_name" type="text" placeholder="">
+                  <input id="icon-prefix" name="first_name" type="text" value="<%= @user.first_name %>">
                   <label for="icon-prefix">First Name</label>
                 </div>
                 <div class="input-field col s12 m6">
                   <i class="material-icons prefix">person_outline</i>
-                  <input id="icon-prefix" name="last_name" type="text" placeholder="">
+                  <input id="icon-prefix" name="last_name" type="text" value="<%= @user.last_name %>">
                   <label for="icon-prefix">Last Name</label>
                 </div>
               </div>
@@ -82,12 +83,12 @@
               <div class="row">
                 <div class="input-field col s12 m6">
                   <i class="material-icons prefix">email</i>
-                  <input id="icon-prefix" name="email" type="email" placeholder="">
+                  <input id="icon-prefix" name="email" type="email" value="<%= @user.email %>">
                   <label for="email">Email</label>
                 </div>
                 <div class="input-field col s12 m6">
                   <i class="material-icons prefix">phone</i>
-                  <input id="icon-prefix" name="phone" type="tel" placeholder="">
+                  <input id="icon-prefix" name="phone" type="tel" value="<%= @user.phone %>">
                   <label for="phone">Phone (xxx-xxx-xxxx)</label>
                 </div>
               </div>
@@ -95,61 +96,51 @@
               <div class="row">
                 <div class="input-field col s12 m4">
                   <i class="material-icons prefix">vpn_key</i>
-                  <input id="icon-prefix" name="username" type="text" placeholder="">
+                  <input id="icon-prefix" name="username" type="text" value="<%= @user.username %>">
                   <label for="icon-prefix">Username (at least 6 characters)</label>
                 </div>
-                <div class="input-field col s12 m4">
-                  <input id="icon-prefix" name="password" type="password" placeholder="">
-                  <label for="icon-prefix">Password (8+ characters and a number)</label>
-                </div>
-                <div class="input-field col s12 m4">
-                  <input id="icon-prefix" name="password_confirmation" type="password" placeholder="">
-                  <label for="icon-prefix">Password Confirmation</label>
-                </div>
               </div>
-            </form>
+            </div>
           </div>
         </div>
       </div>
-    </div>
 
-    <div class="row">
-      <div class="col s12">
-        <div class="card white-transparent hoverable">
-          <div class="card-content grey-text text-darken-3">
-            <form class="col s12">
+      <div class="row">
+        <div class="col s12">
+          <div class="card white-transparent hoverable">
+            <div class="card-content grey-text text-darken-3">
               <div class="row">
                 <div class="input-field col s12">
                   <i class="material-icons prefix">my_location</i>
-                  <input id="icon-prefix" name="address" type="text" placeholder="">
+                  <input id="icon-prefix" name="address" type="text" value="<%= @user.address %>">
                   <label for="icon-prefix">Street</label>
                 </div>
               </div>
               <div class="row">
                 <div class="input-field col s12 m4">
                   <i class="material-icons prefix">place</i>
-                  <input id="icon-prefix" name="city" type="text" placeholder="">
+                  <input id="icon-prefix" name="city" type="text" value="<%= @user.city %>">
                   <label for="icon-prefix">City</label>
                 </div>
                 <div id="dropdown" class="input-field col s12 m4">
-                  <input id="icon-prefix" name="state" type="text" placeholder="">
+                  <input id="icon-prefix" name="state" type="text" value="<%= @user.state %>">
                   <label for="icon-prefix">State (abbrev.)</label>
                 </div>
                 <div class="input-field col s12 m4">
-                  <input id="icon-prefix" name="zip" type="text" placeholder="">
+                  <input id="icon-prefix" name="zip" type="text" value="<%= @user.zip %>">
                   <label for="icon-prefix">Zip</label>
                 </div>
               </div>
               <div class="row">
-                <div class="input-field col s12">
-                  <button type="submit" class="waves-effect waves-light btn deep-orange darken-3 right">Submit</button>
+                <div class="col s12">
+                  <button type="submit" class="waves-effect waves-light btn deep-orange darken-3 right">Save</button>
                 </div>
               </div>
-            </form>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </form>
   </div>
 
   <!-- <div class="row">
