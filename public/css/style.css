@@ -84,6 +84,7 @@ a {
   cursor: default;
   text-decoration: none;
   color: #333;
+  transition:.5s ease;
 }
 
 a:hover {
@@ -91,6 +92,7 @@ a:hover {
   cursor: default;
   text-decoration: none;
   color: #333;
+  transition:.5s ease;
 }
 
 h3 {
@@ -109,11 +111,6 @@ h3 {
   font-size: 36px;
 }
 
-.btn-xl {
-  width: 12rem;
-  height: 12rem;
-}
-
 .fix-icon-nav {
   top: 0;
   left: 15%;
@@ -121,7 +118,66 @@ h3 {
   position: fixed;
 }
 
-<<<<<<< HEAD
+/*forms*/
+/* label color */
+.input-field label {
+  color: #3f3f3f;
+}
+/* label focus color */
+.input-field input[type=text]:focus + label {
+  color: #d84315;
+}
+.input-field input[type=email]:focus + label {
+  color: #d84315;
+}
+.input-field input[type=tel]:focus + label {
+  color: #d84315;
+}
+.input-field input[type=password]:focus + label {
+  color: #d84315;
+}
+/* label underline focus color */
+.input-field input[type=text]:focus {
+  border-bottom: 1px solid #d84315;
+  box-shadow: 0 1px 0 0 #d84315;
+}
+.input-field input[type=email]:focus {
+  border-bottom: 1px solid #d84315;
+  box-shadow: 0 1px 0 0 #d84315;
+}
+.input-field input[type=tel]:focus {
+  border-bottom: 1px solid #d84315;
+  box-shadow: 0 1px 0 0 #d84315;
+}
+.input-field input[type=password]:focus {
+  border-bottom: 1px solid #d84315;
+  box-shadow: 0 1px 0 0 #d84315;
+}
+/* valid color */
+.input-field input[type=text].valid {
+  border-bottom: 1px solid #d84315;
+  box-shadow: 0 1px 0 0 #d84315;
+}
+/* invalid color */
+.input-field input[type=text].invalid {
+  border-bottom: 1px solid #d84315;
+  box-shadow: 0 1px 0 0 #d84315;
+}
+/* icon prefix focus color */
+.input-field .prefix.active {
+  color: #3f3f3f;
+}
+
+/*style caret for state dropdown*/
+.select-wrapper i {
+  position: absolute;
+  right: 0;
+}
+
+.select-wrapper {
+  z-index: 10000
+  position:absolute;
+
 #map-container {
   height: 400px;
   border-radius: 16px 16px;
@@ -134,7 +190,7 @@ h3 {
 #map-canvas {
   height: 384px;
   width: 100%;
-=======
+
 #down-arrow {
   display: block;
   bottom: 0;
@@ -142,5 +198,5 @@ h3 {
 
 h1, h2, h3, h4, h5, h6, p, i {
   cursor: default;
->>>>>>> 2d869978c59b212f6fbb4b1ecf7c7112dee30a49
+
 }
