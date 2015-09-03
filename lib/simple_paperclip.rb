@@ -25,7 +25,7 @@ module Simplepaperclip
     self
   end
 
-  def valid?()      true end
+  # def valid?()      true end
   def new_record?() true end
   def destroyed?()  true end
 
