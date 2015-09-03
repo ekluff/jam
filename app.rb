@@ -33,6 +33,16 @@ get '/' do
   erb(:index)
 end
 
+get '/users/:id' do
+  @user = User.find(params.fetch('id'))
+  if session[:user] == @user
+    @profile_owner
+  else
+    @profile_viewer
+  end
+  erb(:profile)
+end
+
 
 get '/signup' do
   erb(:signup)
@@ -71,7 +81,7 @@ post '/login' do
   password = params.fetch("password")
   @user = User.find_by(:email => email)
   if @user.authenticate(password)
-    session[:username] = @user
+    session[:user] = @user
     redirect "/user/#{@user.id}"
   else
     erb(:errors)
