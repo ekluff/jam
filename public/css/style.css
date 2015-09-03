@@ -192,10 +192,29 @@ h3 {
   box-shadow: 0 1px 0 0 #d84315;
 }
 
+
+.modal-form input{
+  color: #3f3f3f;
+}
+
+.modal-form input[type=text]:focus {
+  border-bottom: 1px solid #d84315;
+  box-shadow: 0 1px 0 0 #d84315;
+}
+
+.modal-form input[type=text]:focus + label {
+  color: #d84315;
+}
+
+.modal-form .prefix {
+  color: #3f3f3f;
+}
+
 /* icon prefix focus color */
 .input-field .prefix.active {
   color: #3f3f3f;
 }
+
 
 #pick-a-time {
   background: transparent;
@@ -261,9 +280,6 @@ h1, h2, h3, h4, h5, h6, p, i {
   cursor: default;
 }
 
-/*.instrument-card {
-  height: 40rem;
-}*/
 
 .instrument-div {
   margin-top:5%;
@@ -274,7 +290,3 @@ h1, h2, h3, h4, h5, h6, p, i {
   margin-bottom: 2%;
   margin-right: 2%;
 }
-
-/*.jam-card {
-  margin-top:5%;
-}*/

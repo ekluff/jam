@@ -70,13 +70,6 @@ post '/jams/new' do
   redirect("/jams/#{@session.id}")
 end
 
-
-
-# get '/users/test' do
-#   @user = User.create({first_name: "Evan", last_name: "Clough", username: 'ekluff', phone: 9712480214, email: 'ec437@comcast.net', address: '17243 Fernwood Drive', city: 'Lake Oswego', state: 'OR', zip: 97034, password: '18181818'})
-#   erb(:profile)
-# end
-
 post '/signup' do
   first_name = params.fetch('first_name')
   last_name = params.fetch('last_name')
