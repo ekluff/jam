@@ -1,17 +1,15 @@
 <h1>Jam Sessions</h1>
-<div class="col s5 z-depth-3 maps right" id="map" style="width:400px;height:300px;">
+<div class="col s5 z-depth-3 maps right" id="map" style="width:800px;height:800px;">
 </div>
 
 
-<h3>All Jam Sessions:</h3>
 <% if @sessions.any?() %>
   <% @sessions.each() do |session| %>
-    <ul>
-      <li><a href="/sessions/<%= session.id() %>"><%= session.date %></a><p style="display:none;" class="lat"><%= session.latitude %></p><p style="display:none;" class="lng"><%= session.longitude %></p></li>
-    </ul>
+    <p style="display:none;" class="lat"><%= session.latitude %></p>
+    <p style="display:none;" class="lng"><%= session.longitude %></p>
+    <p style="display:none;" class="date"><%= session.date %></p>
+    <p style="display:none;" class="id"><%= session.id %></p>
+    <p style="display:none;" class="time"><%= session.time %></p>
+    <p style="display:none;" class="instrument"><%= session.instrument.name %></p>
   <% end %>
-<% else %>
-
-<h4>There are no jam sessions available, yet.</h4>
-
 <% end %>
