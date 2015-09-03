@@ -30,6 +30,15 @@ nav {
   transition: opacity 0.3s ease-in-out;
 }
 
+#jamdropdown {
+  min-width: 24.5%;
+  background-color: rgba(255, 255, 255, 0.5)
+}
+
+#jamdropdown a {
+  color: #d84315;
+}
+
 .brand-logo img.bottom:hover {
   opacity: 0;
 }
