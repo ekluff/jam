@@ -1,7 +1,15 @@
-body {
+/*body {
   background: url('/img/Hexagon-2.jpg');
   background-size: cover;
   background-position: center center;
+  color: #333;
+}*/
+
+body {
+  background: url('/img/jamphotos3.jpg');
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: center 45%;
   color: #333;
 }
 
@@ -85,6 +93,10 @@ nav {
 #you {
   font-weight: 600;
   font-style: italic;
+}
+
+#about {
+  /*background:url('/img/jamphotos3.jpg')*/
 }
 
 a {
