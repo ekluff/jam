@@ -38,7 +38,7 @@
                 <div class="row">
                   <div class="col s12">
                     <form class="avatar-upload" action="/users/<%= @user.id %>/image/edit" method="post" enctype='multipart/form-data'>
-                      <input type="file" name="image">
+                      <input type="file" name="image" required>
                       <button class="btn deep-orange darken-3" type="submit" name="submit">save</button>
                     </form>
                   </div>

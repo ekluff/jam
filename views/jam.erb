@@ -13,7 +13,7 @@
         <div class="card white-transparent jam-details-card hoverable">
           <div class="card-content grey-text text-darken-3">
             <h5><strong>Jam Host</strong>: <%=User.find(@session.host_id.to_i()).username() %> </h5>
-            <h5><strong>Where</strong>: <%=@session.address%> </h5>
+            <h5><strong>Where</strong>: <%=@session.address%>, <%=@session.city%> <%=@session.state%> </h5>
             <h5><strong>When</strong>: <%=@session.date%> at <%=@session.time.format_time%> </h5>
             <% if session[:user].id == @session.host_id %>
             <a href="/jams/<%= @session.id %>/edit" class="button waves-effect waves-light btn deep-orange darken-3 right">EDIT</a>

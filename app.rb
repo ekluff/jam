@@ -97,6 +97,10 @@ get '/signup' do
   erb(:signup)
 end
 
+get '/signup/welcome' do
+  erb(:welcome)
+end
+
 get '/jams/new' do
   @instruments = Instrument.all
   erb(:jams_create)
@@ -198,7 +202,7 @@ post '/signup' do
   @user = User.create({:first_name => first_name, :last_name => last_name, :email => email, :username => username, :password => password_hash, :phone => phone, :address => address, :city => city, :state => state, :zip => zip})
   if @user.save()
     session[:user] = @user
-    redirect "/users/#{@user.id}"
+    redirect '/signup/welcome'
   else
     erb(:errors)
   end
