@@ -16,36 +16,48 @@
       <div class="col s12">
         <div class="card white-transparent hoverable">
           <div class="card-content grey-text text-darken-3">
-            <div class="padded-row row">
-              <div class="col s12 m3">
-                <i class="material-icons left">person</i>
-                <%= @user.first_name %> <%= @user.last_name %>
+            <div class="row">
+              <div class="col s12 m6">
+                <div class="padded-row row">
+                  <div class="col s12">
+                    <i class="material-icons left">person</i>
+                    <%= @user.first_name %> <%= @user.last_name %>
+                  </div>
+                </div>
+                <div class="padded-row row">
+                  <div class="col s12">
+                    <i class="material-icons left">vpn_key</i>
+                    <%= @user.username %>
+                  </div>
+                </div>
+                <div class="padded-row row">
+                  <div class="col s12">
+                    <i class="material-icons left">email</i>
+                    <%= @user.email %>
+                  </div>
+                </div>
+                <div class="padded-row row">
+                  <div class="col s12">
+                    <i class="material-icons left">phone</i>
+                    <%= @user.phone %>
+                  </div>
+                </div>
+                <div class="padded-row row">
+                  <div class="col s12">
+                    <i class="material-icons left">place</i>
+                    <%= @user.address %>, <%= @user.city %>, <%= @user.state %> <%= @user.zip %>
+                  </div>
+                </div>
+                <div class="col s12 m6">
+                  <% @user.instruments.each do |i| %>
+                    <p>
+                      <%= i.name %>
+                    </p>
+                  <% end %>
+                </div>
               </div>
             </div>
-            <div class="padded-row row">
-              <div class="col s12 m3">
-                <i class="material-icons left">vpn_key</i>
-                <%= @user.username %>
-              </div>
-            </div>
-            <div class="padded-row row">
-              <div class="col s12 m3">
-                <i class="material-icons left">email</i>
-                <%= @user.email %>
-              </div>
-            </div>
-            <div class="padded-row row">
-              <div class="col s12 m3">
-                <i class="material-icons left">phone</i>
-                <%= @user.phone %>
-              </div>
-            </div>
-            <div class="padded-row row">
-              <div class="col s12 m8">
-                <i class="material-icons left">place</i>
-                <%= @user.address %>, <%= @user.city %>, <%= @user.state %> <%= @user.zip %>
-              </div>
-            </div>
+
             <div class="row">
               <div class="col s12">
                 <a href="#edit_profile" class="waves-effect waves-light btn deep-orange darken-3 right">edit</a>
