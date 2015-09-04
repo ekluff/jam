@@ -16,3 +16,31 @@ private
     self.longitude=Geokit::Geocoders::GoogleGeocoder.geocode(address.concat(", ").concat(city).concat(", ").concat(state)).longitude
   end
 end
+
+class Time
+
+  def format_time
+    time = self.to_s.split
+    time = time[1]
+    hours = time[0..1].to_i
+    minutes = time[3..4].to_i
+
+    if hours > 12
+      hours = hours - 12
+      afternoon = "PM"
+    else
+      afternoon = "AM"
+    end
+    if minutes < 15
+      minutes = 15
+    elsif minutes < 30 && minutes > 15
+      minutes = 30
+    elsif minutes <45 && minutes > 30
+      minutes = 45
+    else
+      minutes == "00"
+    end
+    formatted_time = "#{hours}:#{minutes} #{afternoon}"
+  end
+
+end

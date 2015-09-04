@@ -217,6 +217,15 @@ h3 {
   color: #d84315;
 }
 
+.modal-form input[type=password]:focus {
+  border-bottom: 1px solid #d84315;
+  box-shadow: 0 1px 0 0 #d84315;
+}
+
+.modal-form input[type=password]:focus + label {
+  color: #d84315;
+}
+
 .modal-form .prefix {
   color: #3f3f3f;
 }
@@ -377,5 +386,12 @@ html {
 .avatar {
   width: 231px;
   margin-top: 40%;
+}
 
+.jam-details-card {
+  min-width: 90%;
+}
+
+.instrument-btn {
+  display: inline-block;
 }

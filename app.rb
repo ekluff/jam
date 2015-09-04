@@ -10,7 +10,7 @@ enable :sessions
 helpers do
 
   def login?
-    if session[:username].nil?
+    if session[:user].nil?
       return false
     else
       return true
@@ -143,8 +143,20 @@ get '/jams/:id' do
   session[:jam] = nil
   @session = Session.find(params.fetch('id'))
   @instruments = @session.instruments()
-  session[:user] = User.find(1)
   erb(:jam)
+end
+
+post '/jams/:id/users/:user_id' do
+  @session = Session.find(params.fetch('id'))
+  @user = User.find(params.fetch('user_id'))
+  @instrument = Instrument.find(params.fetch('instrument_id'))
+  if @session.users.include?(@user)
+    redirect("/jams/#{@session.id}")
+  else
+    @session.users << @user
+    @session.instruments.delete(@instrument)
+  end
+  redirect("/jams/#{@session.id}")
 end
 
 
@@ -170,13 +182,14 @@ post '/signup' do
   @user = User.create({:first_name => first_name, :last_name => last_name, :email => email, :username => username, :password => password_hash, :phone => phone, :address => address, :city => city, :state => state, :zip => zip})
   if @user.save()
     session[:user] = @user
-    erb(:profile)
+    redirect "/users/#{@user.id}"
   else
     erb(:errors)
   end
 end
 
 post '/users/signin' do
+  session[:user] = nil
   username = params.fetch("username")
   password = params.fetch("password")
   @user = User.find_by(:username => username)
