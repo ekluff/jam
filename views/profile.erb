@@ -1,36 +1,155 @@
 <div id="fullpage">
 
-  <div id="profile" class="section white-transparent hoverable">
+<div class="container">
 
-    <div class="container">
-
-      <div class="row">
-
-        <img src="" alt="" />
-        <h3 class="text-area col s12 right-align">
-          welcome, <%= @user.username %>
-        </h3>
-
-      </div>
-
-
-      <div class="row">
-
-        <form class="" action="users/:id/avatar/change" method="post">
-          <input type="file" name="name" value="">
-        </form>
-
-      </div>
-
-    </div>
-
+  <div class="row margin-top-placeholder">
   </div>
 
-  <div id="edit-profile" class="section white-transparent hoverable">
+  <div id="profile" class="section">
     <div class="row">
-      <h3 class="text-area col s12 center-align">edit profile</h3>
+      <h2 class="col s12 deep-orange-text text-darken-4 center-align">
+        Welcome <%= @user.first_name %>
+      </h2>
     </div>
+
     <div class="row">
-      <p class="text-area col s12 center-align">edit form</p>
+      <div class="col s12">
+        <div class="card white-transparent hoverable">
+          <div class="card-content grey-text text-darken-3">
+            <div class="padded-row row">
+              <div class="col s12 m3">
+                <i class="material-icons left">person</i>
+                <%= @user.first_name %> <%= @user.last_name %>
+              </div>
+            </div>
+            <div class="padded-row row">
+              <div class="col s12 m3">
+                <i class="material-icons left">vpn_key</i>
+                <%= @user.username %>
+              </div>
+            </div>
+            <div class="padded-row row">
+              <div class="col s12 m3">
+                <i class="material-icons left">email</i>
+                <%= @user.email %>
+              </div>
+            </div>
+            <div class="padded-row row">
+              <div class="col s12 m3">
+                <i class="material-icons left">phone</i>
+                <%= @user.phone %>
+              </div>
+            </div>
+            <div class="padded-row row">
+              <div class="col s12 m8">
+                <i class="material-icons left">place</i>
+                <%= @user.address %>, <%= @user.city %>, <%= @user.state %> <%= @user.zip %>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col s12">
+                <a href="#edit_profile" class="waves-effect waves-light btn deep-orange darken-3 right">edit</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+    <a href="#edit_profile"><i class="down-arrow medium deep-orange-text text-darken-3 material-icons">keyboard_arrow_down</i></a>
   </div>
+
+  <div id="edit_profile" class="section">
+    <a href="#profile"><i class="up-arrow medium deep-orange-text text-darken-3 material-icons">keyboard_arrow_up</i></a>
+    <form class="col s12" action="/users/<%= @user.id %>/update" method="post">
+      <input type="hidden" name="_method" value="patch">
+      <div class="row">
+        <h3 class="col s12 deep-orange-text text-darken-4 center-align">Edit Profile</h3>
+      </div>
+      <div class="row">
+        <div class="col s12">
+          <div class="card white-transparent hoverable">
+            <div class="card-content grey-text text-darken-3">
+              <div class="row">
+                <div class="input-field col s12 m6">
+                  <i class="material-icons prefix">person</i>
+                  <input id="icon-prefix" name="first_name" type="text" value="<%= @user.first_name %>">
+                  <label for="icon-prefix">First Name</label>
+                </div>
+                <div class="input-field col s12 m6">
+                  <i class="material-icons prefix">person_outline</i>
+                  <input id="icon-prefix" name="last_name" type="text" value="<%= @user.last_name %>">
+                  <label for="icon-prefix">Last Name</label>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="input-field col s12 m6">
+                  <i class="material-icons prefix">email</i>
+                  <input id="icon-prefix" name="email" type="email" value="<%= @user.email %>">
+                  <label for="email">Email</label>
+                </div>
+                <div class="input-field col s12 m6">
+                  <i class="material-icons prefix">phone</i>
+                  <input id="icon-prefix" name="phone" type="tel" value="<%= @user.phone %>">
+                  <label for="phone">Phone (xxx-xxx-xxxx)</label>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="input-field col s12 m4">
+                  <i class="material-icons prefix">vpn_key</i>
+                  <input id="icon-prefix" name="username" type="text" value="<%= @user.username %>">
+                  <label for="icon-prefix">Username (at least 6 characters)</label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col s12">
+          <div class="card white-transparent hoverable">
+            <div class="card-content grey-text text-darken-3">
+              <div class="row">
+                <div class="input-field col s12">
+                  <i class="material-icons prefix">my_location</i>
+                  <input id="icon-prefix" name="address" type="text" value="<%= @user.address %>">
+                  <label for="icon-prefix">Street</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s12 m4">
+                  <i class="material-icons prefix">place</i>
+                  <input id="icon-prefix" name="city" type="text" value="<%= @user.city %>">
+                  <label for="icon-prefix">City</label>
+                </div>
+                <div id="dropdown" class="input-field col s12 m4">
+                  <input id="icon-prefix" name="state" type="text" value="<%= @user.state %>">
+                  <label for="icon-prefix">State (abbrev.)</label>
+                </div>
+                <div class="input-field col s12 m4">
+                  <input id="icon-prefix" name="zip" type="text" value="<%= @user.zip %>">
+                  <label for="icon-prefix">Zip</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col s12">
+                  <button type="submit" class="waves-effect waves-light btn deep-orange darken-3 right">Save</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <!-- <div class="row">
+
+    <form class="" action="/users/<%= @user.id %>/image/change" method="post" enctype='multipart/form-data'>
+      <input type="hidden" name="_method" value="patch">
+      <input type="file" name="image">
+      <button type="submit" name="submit">save</button>
+    </form>
+  </div> -->

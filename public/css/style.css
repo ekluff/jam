@@ -262,13 +262,16 @@ h3 {
   position: absolute;
   right: 0;
   left: 0;
+  bottom: 2rem;
   text-align: center;
 }
 
 .up-arrow {
   display: block;
+  position: absolute;
   right: 0;
   left: 0;
+  top: 4rem;
   text-align: center;
 }
 
@@ -276,10 +279,18 @@ h3 {
   margin-left:48%;
 }
 
-h1, h2, h3, h4, h5, h6, p, i {
+html {
   cursor: default;
 }
 
+
+.padded-row {
+  padding: 1rem 0;
+}
+
+.card-content {
+  overflow: auto;
+}
 
 .instrument-div {
   margin-top:5%;
