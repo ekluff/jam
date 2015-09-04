@@ -10,7 +10,7 @@ enable :sessions
 helpers do
 
   def login?
-    if session[:username].nil?
+    if session[:user].nil?
       return false
     else
       return true

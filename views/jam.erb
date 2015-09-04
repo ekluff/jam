@@ -10,7 +10,7 @@
       <div class="card-content grey-text text-darken-3">
         <p><strong>Jam Host</strong>: <%=User.find(@session.host_id.to_i()).username() %> </p>
         <p><strong>Where</strong>: <%=@session.address%> </p>
-        <p><strong>When</strong>: <%=@session.date%> at <%=@session.time%> </p>
+        <p><strong>When</strong>: <%=@session.date%> at <%=@session.time.format_time%> </p>
       </div>
     </div>
   </div>
