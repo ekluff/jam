@@ -29,7 +29,7 @@
           </a>
           <ul id="nav-mobile" class="right hide-on-med-and-down">
             <% if session[:user] != nil %>
-            <li><a class='dropdown-button deep-orange-text text-darken-3 center-align' href='#jamdropdown' data-activates='jamdropdown'>Jam<i class="material-icons right">arrow_drop_down</i></a></li>
+            <li><a class='dropdown-button deep-orange-text text-darken-3 center-align' href='#jamdropdown' data-activates='jamdropdown'>Jam<i class="material-icons right jam-caret hide-on-sm-and-down">arrow_drop_down</i></a></li>
             <li><a class='deep-orange-text text-darken-3 center-align' href='/users/<%=session[:user].id%>'><%= session[:user].first_name %> <%=session[:user].last_name%></a></li>
             <li><a class='deep-orange-text text-darken-3 center-align' href='/signout'>Sign Out</a></li>
             <% else %>

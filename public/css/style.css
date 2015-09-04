@@ -34,13 +34,21 @@ nav {
   margin-top: -4%;
 }
 
+#nav-mobile {
+  width: 30% !important;
+}
+
 #jamdropdown li {
   min-width: 24.5%;
-  background-color: rgba(255, 255, 255, 0.5)
+  background-color: rgba(255, 255, 255, 0.5);
 }
 
 #jamdropdown a {
   color: #d84315;
+}
+
+.jam-caret {
+  margin: 0 !important;
 }
 
 .brand-logo img.bottom:hover {
@@ -55,7 +63,6 @@ nav {
 #nav-mobile li {
   width: 33.3%;
 }
-
 
 .header h1{
   font-weight: 400;
