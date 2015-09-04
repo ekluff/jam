@@ -332,3 +332,11 @@ html {
 .card-content {
   overflow: hidden;
 }
+
+.jam-details-card {
+  min-width: 90%;
+}
+
+.instrument-btn {
+  display: inline-block;
+}

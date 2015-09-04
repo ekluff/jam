@@ -1,48 +1,69 @@
-<div class="row">
-  <div class="col s12 center-align">
-    <h1>JAM DETAILS</h1>
+<div id="fullpage">
+  <div class="section" id="details">
+   <div class="container">
+
+    <div class="row">
+      <div class="col s12 center-align">
+        <h1>JAM DETAILS</h1>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col s12">
+        <div class="card white-transparent jam-details-card hoverable">
+          <div class="card-content grey-text text-darken-3">
+            <h5><strong>Jam Host</strong>: <%=User.find(@session.host_id.to_i()).username() %> </h5>
+            <h5><strong>Where</strong>: <%=@session.address%> </h5>
+            <h5><strong>When</strong>: <%=@session.date%> at <%=@session.time.format_time%> </h5>
+          </div>
+        </div>
+      </div>
+    </div>
+
+   </div>
+   <a href="#jam_instruments"><i class="down-arrow medium deep-orange-text text-darken-3 material-icons">keyboard_arrow_down</i></a>
+  </div>
+
+  <div class="section" id="jam_instruments">
+    <a href="#details"><i class="up-arrow medium deep-orange-text text-darken-3 material-icons">keyboard_arrow_up</i></a>
+   <div class="container">
+      <div class="row">
+        <div class="col s12">
+          <div class="card white-transparent jam-details-card hoverable">
+            <div class="card-content grey-text text-darken-3 center-align">
+              <h4> <strong>Who's Playing: </strong></h4>
+              <% if @session.users.count < 2 %>
+                  <h5> Help a brother jam! Be the first to join. </h5>
+              <% else %>
+                <%@session.users.each() do |user|%>
+                    <h5><%=user.username%> </h5>
+                <%end%>
+              <% end %>
+              <div class="divider deep-orange darken-3 list-divider"></div>
+              <h4> <strong>Instruments Still Needed:</strong> </h4>
+              <% if @session.instruments != nil %>
+                <% @session.instruments.each() do |instrument| %>
+                  <div class="row">
+                    <div class="col s6 l4 offset-l4">
+                      <h5><%=instrument.name%> </h5>
+                    </div>
+                    <% if session[:user] != nil %>
+                    <div class="col s6 l3">
+                      <form action="/jams/<%=@session.id%>/user/<%= session[:user].id %>" method="post">
+                        <input name="user_id" type="hidden" value="<%=session[:user].id%>">
+                        <button class="waves-effect waves-light btn deep-orange darken-3 white-text" type="submit">I'll Play It!</button>
+                      </form>
+                    </div>
+                    <% end %>
+                  </div>
+                <% end %>
+              <% else %>
+                  <h5> This jam is full. Sorry, sister. </h5>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
-
-<div class="row">
-  <div class="col s12">
-    <div class="card white-transparent">
-      <div class="card-content grey-text text-darken-3">
-        <p><strong>Jam Host</strong>: <%=User.find(@session.host_id.to_i()).username() %> </p>
-        <p><strong>Where</strong>: <%=@session.address%> </p>
-        <p><strong>When</strong>: <%=@session.date%> at <%=@session.time.format_time%> </p>
-      </div>
-    </div>
-  </div>
-  <div class="col s12 l6">
-    <div class="card white-transparent">
-      <div class="card-content grey-text text-darken-3">
-        <p> Instruments Needed: </p>
-        <% @session.instruments.each() do |instrument| %>
-          <p><%=instrument.name%> </p>
-        <% end %>
-      </div>
-    </div>
-  </div>
-  <div class="col s12 l6">
-    <div class="card white-transparent">
-      <div class="card-content grey-text text-darken-3">
-        <p> Musicians Coming: </p>
-        <%@session.users.each() do |user|%>
-          <p><%=user.username%> </p>
-        <%end%>
-      </div>
-    </div>
-  </div>
-</div>
-
-<% if session[:user] != nil %>
-<form id="add_user" name="add_user" action="/jams/<%= @session.id %>/user/<%= session[:user].id %>" method="post">
-  <select type="text" name="instrument_id" id="instrument_id">
-    <% @instruments.each() do |instrument| %>
-      <option value="<%= instrument.id %>"> <%= instrument.name %> </option>
-    <% end %>
-  </select>
-    <button type="submit">Join this Jam</button>
-</form>
-<% end %>
