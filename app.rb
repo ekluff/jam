@@ -34,8 +34,8 @@ end
 
 get '/users/:id' do
   @user = User.find(params.fetch('id'))
-  if session[:user] == @user
-    @profile_owner
+  if session[:user].id == @user.id
+    @profile_owner = true
   end
   erb(:profile)
 end
