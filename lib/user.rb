@@ -2,7 +2,7 @@ require('bcrypt')
 require('pry')
 
 class User < ActiveRecord::Base
-  
+
   attr_accessor :image
 
   has_and_belongs_to_many(:instruments)

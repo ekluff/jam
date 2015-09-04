@@ -17,10 +17,6 @@ helpers do
     end
   end
 
-  def user
-    return session[:user]
-  end
-
 end
 
 before do
@@ -33,11 +29,15 @@ get '/' do
 end
 
 get '/users/:id' do
-  @user = User.find(params.fetch('id'))
-  if session[:user].id == @user.id
-    @profile_owner = true
+  if login?
+    @user = User.find(params.fetch('id'))
+    if session[:user].id == @user.id
+      @profile_owner = true
+    end
+    erb(:profile)
+  else
+    redirect('/')
   end
-  erb(:profile)
 end
 
 # patch '/users/:id/image/change' do
@@ -97,6 +97,10 @@ get '/signup' do
   erb(:signup)
 end
 
+get '/signup/welcome' do
+  erb(:welcome)
+end
+
 get '/jams/new' do
   @instruments = Instrument.all
   erb(:jams_create)
@@ -125,19 +129,34 @@ post '/jams/new' do
     erb(:errors)
   end
 end
-#
-# post '/jams/:id/instruments/new' do
-#   binding.pry
-#   if session[:jam] == nil
-#     binding.pry
-#     redirect('/jams/new')
-#   end
-#   instruments = params.fetch("instrument_id")
-#   instruments.each do |instrument|
-#     Session.find(session[:session_id].to_i).instruments << instrument
-#   end
-#   redirect("/jams/#{session[:session_id].to_i}")
-# end
+
+get '/jams/:id/edit' do
+  @session = Session.find(params.fetch('id'))
+  @instruments = Instrument.all
+  erb(:jam_edit)
+end
+
+patch '/jams/:id/edit' do
+  session_id = params.fetch("id")
+  @session = Session.find(session_id)
+  address = params.fetch('address')
+  city = params.fetch('city').capitalize
+  state = params.fetch('state').upcase
+  zip = params.fetch('zip').gsub(/([\D])/, "")
+  host_id = params.fetch('host_id')
+  date = params.fetch('date')
+  time = params.fetch('time')
+  @session.update({:host_id => host_id, :address => address, :city => city, :state => state, :zip => zip, :date => date, :time => time})
+
+  instrument_id = params.fetch('instrument_id')
+
+  instrument_id.each do |id|
+    i = Instrument.find(id)
+    @session.instruments.push(i)
+  end
+  redirect("/jams/#{@session.id}")
+end
+
 
 get '/jams/:id' do
   session[:jam] = nil
@@ -154,8 +173,15 @@ post '/jams/:id/users/:user_id' do
     redirect("/jams/#{@session.id}")
   else
     @session.users << @user
-    @session.instruments.delete(@instrument)
+    @session.instruments.destroy(@instrument)
   end
+  redirect("/jams/#{@session.id}")
+end
+
+delete '/jams/:id/instruments/:instrument_id' do
+  @session = Session.find(params.fetch('id'))
+  @instrument = Instrument.find(params.fetch('instrument_id'))
+  @session.instruments.delete(@instrument)
   redirect("/jams/#{@session.id}")
 end
 
@@ -182,7 +208,7 @@ post '/signup' do
   @user = User.create({:first_name => first_name, :last_name => last_name, :email => email, :username => username, :password => password_hash, :phone => phone, :address => address, :city => city, :state => state, :zip => zip})
   if @user.save()
     session[:user] = @user
-    redirect "/users/#{@user.id}"
+    redirect '/signup/welcome'
   else
     erb(:errors)
   end
@@ -195,6 +221,7 @@ post '/users/signin' do
   @user = User.find_by(:username => username)
 
   if @user == nil
+    @incorrect_password == true
     erb :errors
   elsif @user.authenticate(password)
     session[:user] = @user
