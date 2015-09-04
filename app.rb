@@ -160,7 +160,11 @@ post '/users/signin' do
   username = params.fetch("username")
   password = params.fetch("password")
   @user = User.find_by(:username => username)
-  if @user.authenticate(password)
+  # binding.pry
+
+  if @user == nil
+    erb :errors
+  elsif @user.authenticate(password)
     session[:user] = @user
     redirect "/users/#{@user.id}"
   else
