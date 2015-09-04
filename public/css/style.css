@@ -395,3 +395,8 @@ html {
 .instrument-btn {
   display: inline-block;
 }
+
+.get-started-btn {
+  margin-left:45%;
+  margin-top:2%;
+}

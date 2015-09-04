@@ -17,10 +17,6 @@ helpers do
     end
   end
 
-  def user
-    return session[:user]
-  end
-
 end
 
 before do
@@ -33,11 +29,15 @@ get '/' do
 end
 
 get '/users/:id' do
-  @user = User.find(params.fetch('id'))
-  if session[:user].id == @user.id
-    @profile_owner = true
+  if login?
+    @user = User.find(params.fetch('id'))
+    if session[:user].id == @user.id
+      @profile_owner = true
+    end
+    erb(:profile)
+  else
+    redirect('/')
   end
-  erb(:profile)
 end
 
 # patch '/users/:id/image/change' do
@@ -182,7 +182,7 @@ post '/signup' do
   @user = User.create({:first_name => first_name, :last_name => last_name, :email => email, :username => username, :password => password_hash, :phone => phone, :address => address, :city => city, :state => state, :zip => zip})
   if @user.save()
     session[:user] = @user
-    redirect "/users/#{@user.id}"
+    redirect "/users/#{session[:user].id}"
   else
     erb(:errors)
   end
