@@ -92,8 +92,22 @@ get '/jams/new' do
 end
 
 post '/jams/new' do
-
-
+  address = params.fetch('address')
+  city = params.fetch('city').capitalize
+  state = params.fetch('state').upcase
+  zip = params.fetch('zip').gsub(/([\D])/, "")
+  host_id = params.fetch('host_id')
+  date = params.fetch('date')
+  time = params.fetch('time')
+  @session = Session.create({:host_id => host_id, :address => address, :city => city, :state => state, :zip => zip, :date => date, :time => time})
+  if @session.save == false
+    erb(:errors)
+  end
+  instruments = params.fetch('instrument[]')
+  instruments.each do |instrument|
+    instrument.sessions << @session
+  end
+  redirect("/jams/#{@session.id}")
 end
 
 get '/jams/:id' do
@@ -104,10 +118,6 @@ get '/jams/:id' do
 end
 
 
-# get '/users/test' do
-#   @user = User.create({first_name: "Evan", last_name: "Clough", username: 'ekluff', phone: 9712480214, email: 'ec437@comcast.net', address: '17243 Fernwood Drive', city: 'Lake Oswego', state: 'OR', zip: 97034, password: '18181818'})
-#   erb(:profile)
-# end
 
 post '/signup' do
   first_name = params.fetch('first_name')
@@ -128,16 +138,17 @@ post '/signup' do
   password_hash = BCrypt::Password.create(password)
   @user = User.create({:first_name => first_name, :last_name => last_name, :email => email, :username => username, :password => password_hash, :phone => phone, :address => address, :city => city, :state => state, :zip => zip})
   if @user.save()
+    session[:user] = @user
     redirect "/users/#{@user.id}"
   else
     erb(:errors)
   end
 end
 
-post '/login' do
-  email = params.fetch("email")
+post '/signin' do
+  username = params.fetch("username")
   password = params.fetch("password")
-  @user = User.find_by(:email => email)
+  @user = User.find_by(:username => username)
   if @user.authenticate(password)
     session[:user] = @user
     redirect "/users/#{@user.id}"
@@ -146,8 +157,8 @@ post '/login' do
   end
 end
 
-get '/logout' do
-  session[:username] = nil
+get '/signout' do
+  session[:user] = nil
   redirect('/')
 end
 
