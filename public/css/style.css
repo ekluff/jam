@@ -39,8 +39,11 @@ nav {
   width: 30% !important;
 }
 
+#nav-mobile > li {
+  width: 33.3%;
+}
+
 #jamdropdown li {
-  min-width: 24.5%;
   background-color: rgba(255, 255, 255, 0.5);
 }
 
@@ -59,10 +62,6 @@ nav {
 #nav-mobile {
   display: inline-block;
   width: 25%;
-}
-
-#nav-mobile li {
-  width: 33.3%;
 }
 
 .header h1{
