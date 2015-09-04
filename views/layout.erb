@@ -13,16 +13,11 @@
   </head>
 
   <body>
-    <% if session[:user] %>
+    <% if session[:user] != nil %>
     <ul id="jamdropdown" class="dropdown-content">
       <li><a href="#">find a jam</a></li>
       <li class="divider"></li>
       <li><a href="/jams/create">create a jam</a></li>
-    </ul>
-    <ul id="userdropdown" class="dropdown-content">
-      <li><a href="/user/<%=session[user].id%>">profile</a></li>
-      <li class="divider"></li>
-      <li><a href="/signout">sign out</a></li>
     </ul>
     <% end %>
     <div class="navbar-fixed">
@@ -33,9 +28,10 @@
             <img class="bottom" src="/img/jam3brandlogobottom.png" alt="logo on hover"/>
           </a>
           <ul id="nav-mobile" class="right hide-on-med-and-down">
-            <% if session[:user] %>
+            <% if session[:user] != nil %>
             <li><a class='dropdown-button deep-orange-text text-darken-3 center-align' href='#jamdropdown' data-activates='jamdropdown'>Jam<i class="material-icons right">arrow_drop_down</i></a></li>
-            <li><a class='dropdown-button deep-orange-text text-darken-3 center-align' href='#userdropdown' data-activates='jamdropdown'><i class="material-icons">more_vert</i></a></li>
+            <li><a class='deep-orange-text text-darken-3 center-align' href='/users/<%=session[:user].id%>'><%= session[:user].first_name %> <%=session[:user].last_name%></a></li>
+            <li><a class='deep-orange-text text-darken-3 center-align' href='/signout'>Sign Out</a></li>
             <% else %>
             <li><a href="/signup" class="deep-orange-text text-darken-3 center-align">Sign Up</a></li>
             <li><a href="#signin" class="deep-orange-text text-darken-3 center-align modal-trigger">Sign In</a></li>
@@ -44,7 +40,7 @@
               <div class="modal-content">
                 <h4 class="deep-orange-text text-darken-3">Sign In</h4>
                 <div class="row">
-                    <form class="col s12 modal-form">
+                    <form class="col s12 modal-form" action="signin" method="post">
                       <div class="row">
                         <div class="col s6 offset-s3">
                           <i class="material-icons prefix">person</i>
@@ -55,7 +51,7 @@
                       <div class="row">
                         <div class="col s6 offset-s3">
                           <i class="material-icons prefix">vpn_key</i>
-                          <input name="password" id="password" type="text">
+                          <input name="password" id="password" type="password">
                           <label for="password">Password</label>
                         </div>
                       </div>

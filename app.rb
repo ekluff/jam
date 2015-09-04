@@ -89,16 +89,17 @@ post '/signup' do
   password_hash = BCrypt::Password.create(password)
   @user = User.create({:first_name => first_name, :last_name => last_name, :email => email, :username => username, :password => password_hash, :phone => phone, :address => address, :city => city, :state => state, :zip => zip})
   if @user.save()
+    session[:user] = @user
     redirect "/users/#{@user.id}"
   else
     erb(:errors)
   end
 end
 
-post '/login' do
-  email = params.fetch("email")
+post '/signin' do
+  username = params.fetch("username")
   password = params.fetch("password")
-  @user = User.find_by(:email => email)
+  @user = User.find_by(:username => username)
   if @user.authenticate(password)
     session[:user] = @user
     redirect "/users/#{@user.id}"
@@ -107,8 +108,8 @@ post '/login' do
   end
 end
 
-get '/logout' do
-  session[:username] = nil
+get '/signout' do
+  session[:user] = nil
   redirect('/')
 end
 
