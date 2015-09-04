@@ -100,8 +100,8 @@ post '/jams/new' do
   date = params.fetch('date')
   time = params.fetch('time')
   @session = Session.create({:host_id => host_id, :address => address, :city => city, :state => state, :zip => zip, :date => date, :time => time})
+  session[:jam] = @session
   if @session.save
-    session[:jam] = @session
     redirect('/jams/new#create_form_2')
   else
     erb(:errors)
