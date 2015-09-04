@@ -125,19 +125,24 @@ post '/jams/new' do
     erb(:errors)
   end
 end
-#
-# post '/jams/:id/instruments/new' do
-#   binding.pry
-#   if session[:jam] == nil
-#     binding.pry
-#     redirect('/jams/new')
-#   end
-#   instruments = params.fetch("instrument_id")
-#   instruments.each do |instrument|
-#     Session.find(session[:session_id].to_i).instruments << instrument
-#   end
-#   redirect("/jams/#{session[:session_id].to_i}")
-# end
+
+patch '/jams/:id/edit' do
+  session_id = params.fetch("id")
+  @session = Session.find(session_id)
+  address = params.fetch('address')
+  city = params.fetch('city').capitalize
+  state = params.fetch('state').upcase
+  zip = params.fetch('zip').gsub(/([\D])/, "")
+  host_id = params.fetch('host_id')
+  date = params.fetch('date')
+  time = params.fetch('time')
+
+  instrument_id = params.fetch('instrument_id')
+
+  @session.update({:host_id => host_id, :address => address, :city => city, :state => state, :zip => zip, :date => date, :time => time})
+  redirect("/jams/#{@session.id}")
+end
+
 
 get '/jams/:id' do
   session[:jam] = nil
