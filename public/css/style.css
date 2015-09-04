@@ -257,6 +257,11 @@ h3 {
   width: 100%;
 }
 
+#map {
+  width: 35rem;
+  height: 30rem;
+}
+
 .down-arrow {
   display: block;
   position: absolute;

@@ -175,9 +175,8 @@ end
 
 get '/jams' do
   @sessions = Session.all()
-  erb(:jams)
+  erb(:jams_find)
 end
-
 
 get '/errors' do
   erb(:errors)
