@@ -257,6 +257,11 @@ h3 {
   width: 100%;
 }
 
+#map {
+  width: 35rem;
+  height: 30rem;
+}
+
 .down-arrow {
   display: block;
   position: absolute;
@@ -300,4 +305,9 @@ html {
   color: #CC0000;
   margin-bottom: 2%;
   margin-right: 2%;
+}
+
+.list-divider {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }

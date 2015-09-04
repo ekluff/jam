@@ -1,15 +1,32 @@
-<% require('pry') %>
-<h1>Jam Sessions</h1>
-<div class="col s5 z-depth-3 maps right" id="map" style="width:800px;height:800px;">
+
+<div class="row">
+  <div class="col s12 center-align">
+    <h1>FIND A JAM</h1>
+  </div>
 </div>
 
+<div class="row">
+  <div class="col s12 m6">
+    <div class="card white-transparent">
+      <div class="card-content grey-text text-darken-3">
+        <% if @sessions.any?() %>
+            <ol type="A">
+              <% @sessions.each() do |session| %>
+                <li><a href="/jams/<%= session.id %>"><%= session.date %> at <%= session.address %></a></li>
+                <div class="divider deep-orange darken-3 list-divider"></div>
+                <p></p>
+              <% end %>
+            </ol>
+            <% @sessions.each() do |session| %>
+              <p style="display:none;" class="lat"><%= session.latitude %></p>
+              <p style="display:none;" class="lng"><%= session.longitude %></p>
+            <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
 
-<% if @sessions.any?() %>
-  <% @sessions.each() do |session| %>
-    <ol type="A">
-      <li><a href="/jams/<%= session.id %>"><%= session.address %>, <%= session.city %>, <%= session.state %> <%= session.zip %> (<%= session.date %>)</a></li>
-    </ol>
-    <p style="display:none;" class="lat"><%= session.latitude %></p>
-    <p style="display:none;" class="lng"><%= session.longitude %></p>
-  <% end %>
-<% end %>
+  <div class="col s12 m6 right">
+    <div class="z-depth-3 maps" id="map">
+  </div>
+</div>
