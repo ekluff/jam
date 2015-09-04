@@ -1,191 +1,186 @@
 <div id="fullpage">
 
-<div class="container">
+  <div class="container">
 
-  <div class="row margin-top-placeholder">
-  </div>
-
-  <div id="profile" class="section">
-    <div class="row">
-      <% if @profile_owner == true %>
-      <h2 class="col s12 deep-orange-text text-darken-4 center-align">
-        Welcome <%= @user.first_name %>
-      </h2>
-     <% else %>
-       <h2 class="col s12 deep-orange-text text-darken-4 center-align">
-         <%= @user.first_name %> <%= @user.last_name %>
-       </h2>
-      <% end %>
+    <div class="row margin-top-placeholder">
     </div>
 
-    <div class="row">
-      <div class="col s12">
-        <div class="card white-transparent hoverable">
-          <div class="card-content grey-text text-darken-3">
-            <div class="row">
-              <div class="col s12 m6">
-                <div class="row">
-                  <div class="col s12">
-                    <div class="hexagon hexagon2">
-                      <div class="hexagon-in1">
-                        <div class="hexagon-in2">
-                          <img id="avatar" class="avatar" src="<%= @user.image_url %>" alt="" />
+    <div id="profile" class="section">
+      <div class="row">
+        <% if @profile_owner == true %>
+        <h2 class="col s12 deep-orange-text text-darken-4 center-align">
+          Welcome <%= @user.first_name %>
+        </h2>
+        <% else %>
+        <h2 class="col s12 deep-orange-text text-darken-4 center-align">
+          <%= @user.first_name %> <%= @user.last_name %>
+        </h2>
+        <% end %>
+      </div>
+
+      <div class="row">
+        <div class="col s12">
+          <div class="card white-transparent hoverable">
+            <div class="card-content grey-text text-darken-3">
+              <div class="row">
+                <div class="col s12 m6">
+                  <div class="row">
+                    <div class="avatar-col">
+                      <div class="hexagon hexagon2">
+                        <div class="hexagon-in1">
+                          <div class="hexagon-in2" style="background: url('<%= @user.image_url %>');"></div>
                         </div>
                       </div>
                     </div>
                   </div>
+                  <!-- <div class="row">
+
+                  </div> -->
                 </div>
-                <div class="row">
-                  <div class="col s12">
-                    <form class="avatar-upload" action="/users/<%= @user.id %>/image/edit" method="post" enctype='multipart/form-data'>
-                      <input type="file" name="image">
-                      <button type="submit" name="submit">save</button>
-                    </form>
-                  </div>
-                </div>
-              </div>
-              <div class="col s12 m3">
-                <div class="padded-row row">
-                  <div class="col s12">
-                    <i class="material-icons left">person</i>
-                    <%= @user.first_name %> <%= @user.last_name %>
-                  </div>
-                </div>
-                <div class="padded-row row">
-                  <div class="col s12">
-                    <i class="material-icons left">vpn_key</i>
-                    <%= @user.username %>
-                  </div>
-                </div>
-                <div class="padded-row row">
-                  <div class="col s12">
-                    <i class="material-icons left">email</i>
-                    <%= @user.email %>
-                  </div>
-                </div>
-                <% if @profile_owner == true %>
-                <div class="padded-row row">
-                  <div class="col s12">
-                    <i class="material-icons left">phone</i>
-                    <%= @user.phone %>
-                  </div>
-                </div>
-                <div class="padded-row row">
-                  <div class="col s12">
-                    <i class="material-icons left">place</i>
-                    <%= @user.address %>, <%= @user.city %>, <%= @user.state %> <%= @user.zip %>
-                  </div>
-                </div>
-                <% end %>
                 <div class="col s12 m3">
-                  <% @user.instruments.each do |i| %>
-                    <p>
-                      <%= i.name %>
-                    </p>
+                  <div class="padded-row row">
+                    <div class="col s12">
+                      <i class="material-icons left">person</i>
+                      <%= @user.first_name %> <%= @user.last_name %>
+                    </div>
+                  </div>
+                  <div class="padded-row row">
+                    <div class="col s12">
+                      <i class="material-icons left">vpn_key</i>
+                      <%= @user.username %>
+                    </div>
+                  </div>
+                  <div class="padded-row row">
+                    <div class="col s12">
+                      <i class="material-icons left">email</i>
+                      <%= @user.email %>
+                    </div>
+                  </div>
+                  <% if @profile_owner == true %>
+                  <div class="padded-row row">
+                    <div class="col s12">
+                      <i class="material-icons left">phone</i>
+                      <%= @user.phone %>
+                    </div>
+                  </div>
+                  <div class="padded-row row">
+                    <div class="col s12">
+                      <i class="material-icons left">place</i>
+                      <%= @user.address %>, <%= @user.city %>, <%= @user.state %> <%= @user.zip %>
+                    </div>
+                  </div>
                   <% end %>
                 </div>
               </div>
-            </div>
-        <% if @profile_owner == true %>
-            <div class="row">
-              <div class="col s12">
-                <a href="#edit_profile" class="waves-effect waves-light btn deep-orange darken-3 right">edit</a>
+              <% if @profile_owner == true %>
+              <div class="row">
+                <div class="col m6 s12">
+                  <center>
+                    <form class="avatar-upload" action="/users/<%= @user.id %>/image/edit" method="post" enctype='multipart/form-data'>
+                      <label for="avatar-upload" class="style-avatar-upload grey-text text-darken-3">Click Here to Edit Avatar</label>
+                      <input id="avatar-upload" type="file" name="image">
+                      <button id="avatar-upload-btn" type="submit" name="submit">save</button>
+                    </form>
+                  </center>
+                </div>
+                <div class="col m6 s12">
+                  <a href="#edit_profile" class="waves-effect waves-light btn deep-orange darken-3 right">edit</a>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
+      <a href="#edit_profile"><i class="down-arrow medium deep-orange-text text-darken-3 material-icons">keyboard_arrow_down</i></a>
     </div>
-    <a href="#edit_profile"><i class="down-arrow medium deep-orange-text text-darken-3 material-icons">keyboard_arrow_down</i></a>
-  </div>
-  <div id="edit_profile" class="section">
-    <a href="#profile"><i class="up-arrow medium deep-orange-text text-darken-3 material-icons">keyboard_arrow_up</i></a>
-    <form class="col s12" action="/users/<%= @user.id %>/update" method="post">
-      <input type="hidden" name="_method" value="patch">
-      <div class="row">
-        <h3 class="col s12 deep-orange-text text-darken-4 center-align">Edit Profile</h3>
-      </div>
-      <div class="row">
-        <div class="col s12">
-          <div class="card white-transparent hoverable">
-            <div class="card-content grey-text text-darken-3">
-              <div class="row">
-                <div class="input-field col s12 m6">
-                  <i class="material-icons prefix">person</i>
-                  <input id="icon-prefix" name="first_name" type="text" value="<%= @user.first_name %>">
-                  <label for="icon-prefix">First Name</label>
+    <div id="edit_profile" class="section">
+      <a href="#profile"><i class="up-arrow medium deep-orange-text text-darken-3 material-icons">keyboard_arrow_up</i></a>
+      <form class="col s12" action="/users/<%= @user.id %>/update" method="post">
+        <input type="hidden" name="_method" value="patch">
+        <div class="row">
+          <h3 class="col s12 deep-orange-text text-darken-4 center-align">Edit Profile</h3>
+        </div>
+        <div class="row">
+          <div class="col s12">
+            <div class="card white-transparent hoverable">
+              <div class="card-content grey-text text-darken-3">
+                <div class="row">
+                  <div class="input-field col s12 m6">
+                    <i class="material-icons prefix">person</i>
+                    <input id="icon-prefix" name="first_name" type="text" value="<%= @user.first_name %>">
+                    <label for="icon-prefix">First Name</label>
+                  </div>
+                  <div class="input-field col s12 m6">
+                    <i class="material-icons prefix">person_outline</i>
+                    <input id="icon-prefix" name="last_name" type="text" value="<%= @user.last_name %>">
+                    <label for="icon-prefix">Last Name</label>
+                  </div>
                 </div>
-                <div class="input-field col s12 m6">
-                  <i class="material-icons prefix">person_outline</i>
-                  <input id="icon-prefix" name="last_name" type="text" value="<%= @user.last_name %>">
-                  <label for="icon-prefix">Last Name</label>
-                </div>
-              </div>
 
-              <div class="row">
-                <div class="input-field col s12 m6">
-                  <i class="material-icons prefix">email</i>
-                  <input id="icon-prefix" name="email" type="email" value="<%= @user.email %>">
-                  <label for="email">Email</label>
+                <div class="row">
+                  <div class="input-field col s12 m6">
+                    <i class="material-icons prefix">email</i>
+                    <input id="icon-prefix" name="email" type="email" value="<%= @user.email %>">
+                    <label for="email">Email</label>
+                  </div>
+                  <div class="input-field col s12 m6">
+                    <i class="material-icons prefix">phone</i>
+                    <input id="icon-prefix" name="phone" type="tel" value="<%= @user.phone %>">
+                    <label for="phone">Phone (xxx-xxx-xxxx)</label>
+                  </div>
                 </div>
-                <div class="input-field col s12 m6">
-                  <i class="material-icons prefix">phone</i>
-                  <input id="icon-prefix" name="phone" type="tel" value="<%= @user.phone %>">
-                  <label for="phone">Phone (xxx-xxx-xxxx)</label>
-                </div>
-              </div>
 
-              <div class="row">
-                <div class="input-field col s12 m4">
-                  <i class="material-icons prefix">vpn_key</i>
-                  <input id="icon-prefix" name="username" type="text" value="<%= @user.username %>">
-                  <label for="icon-prefix">Username (at least 6 characters)</label>
+                <div class="row">
+                  <div class="input-field col s12 m4">
+                    <i class="material-icons prefix">vpn_key</i>
+                    <input id="icon-prefix" name="username" type="text" value="<%= @user.username %>">
+                    <label for="icon-prefix">Username (at least 6 characters)</label>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <div class="row">
-        <div class="col s12">
-          <div class="card white-transparent hoverable">
-            <div class="card-content grey-text text-darken-3">
-              <div class="row">
-                <div class="input-field col s12">
-                  <i class="material-icons prefix">my_location</i>
-                  <input id="icon-prefix" name="address" type="text" value="<%= @user.address %>">
-                  <label for="icon-prefix">Street</label>
+        <div class="row">
+          <div class="col s12">
+            <div class="card white-transparent hoverable">
+              <div class="card-content grey-text text-darken-3">
+                <div class="row">
+                  <div class="input-field col s12">
+                    <i class="material-icons prefix">my_location</i>
+                    <input id="icon-prefix" name="address" type="text" value="<%= @user.address %>">
+                    <label for="icon-prefix">Street</label>
+                  </div>
                 </div>
-              </div>
-              <div class="row">
-                <div class="input-field col s12 m4">
-                  <i class="material-icons prefix">place</i>
-                  <input id="icon-prefix" name="city" type="text" value="<%= @user.city %>">
-                  <label for="icon-prefix">City</label>
+                <div class="row">
+                  <div class="input-field col s12 m4">
+                    <i class="material-icons prefix">place</i>
+                    <input id="icon-prefix" name="city" type="text" value="<%= @user.city %>">
+                    <label for="icon-prefix">City</label>
+                  </div>
+                  <div id="dropdown" class="input-field col s12 m4">
+                    <input id="icon-prefix" name="state" type="text" value="<%= @user.state %>">
+                    <label for="icon-prefix">State (abbrev.)</label>
+                  </div>
+                  <div class="input-field col s12 m4">
+                    <input id="icon-prefix" name="zip" type="text" value="<%= @user.zip %>">
+                    <label for="icon-prefix">Zip</label>
+                  </div>
                 </div>
-                <div id="dropdown" class="input-field col s12 m4">
-                  <input id="icon-prefix" name="state" type="text" value="<%= @user.state %>">
-                  <label for="icon-prefix">State (abbrev.)</label>
-                </div>
-                <div class="input-field col s12 m4">
-                  <input id="icon-prefix" name="zip" type="text" value="<%= @user.zip %>">
-                  <label for="icon-prefix">Zip</label>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col s12">
-                  <button type="submit" class="waves-effect waves-light btn deep-orange darken-3 right">Save</button>
+                <div class="row">
+                  <div class="col s12">
+                    <button type="submit" class="waves-effect waves-light btn deep-orange darken-3 right">Save</button>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </form>
-  </div>
-  <% end %>
+      </form>
+    </div>
+    <% end %>
 
-  <div class="row">
+    <div class="row">
 
-  </div>
+    </div>
