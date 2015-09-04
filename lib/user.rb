@@ -2,7 +2,7 @@ require('bcrypt')
 require('pry')
 
 class User < ActiveRecord::Base
-
+  
   attr_accessor :image
 
   has_and_belongs_to_many(:instruments)
@@ -18,11 +18,14 @@ class User < ActiveRecord::Base
   validates(:state, {:presence => true, :length => { :is => 2 }, :format => { :with => /\A[A-Z]+\z/, :message => "only allows capital letters" }})
   validates(:zip, {:presence => true, :length => { :is => 5 }, :format => { :with => /\A\d+\z/, :message => "only allows numbers" }})
   validates(:password, {:presence => true, :format => { :with => /\d/, :message => "must have at least 1 number" }, :length => {:minimum => 8}})
+  after_initialize :init
   before_save(:capitalize_name)
 
   include Paperclip::Glue
 
-  has_attached_file :image, :styles => { :medium => "300x300>", :thumb => "100x100>" }
+  has_attached_file :image, :styles => { :medium => "300x300>", :thumb => "100x100>" },
+                            :default_url => "/img/avatar/default.png"
+
   validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
 
   def authenticate(entered_password)
@@ -34,6 +37,11 @@ class User < ActiveRecord::Base
   end
 
   private
+
+  def init
+    self.image_url ||= "/img/avatar/default.png"
+    self.image_file_name ||= "default.png"
+  end
 
   define_method(:capitalize_name) do
     self.first_name=(first_name().strip().split(/(\W)/).map(&:capitalize).join)
