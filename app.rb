@@ -96,6 +96,12 @@ post '/jams/new' do
 
 end
 
+get '/jams/:id' do
+  @session = Session.find(params.fetch('id'))
+  @instruments = @session.instruments()
+  session[:user] = User.find(1)
+  erb(:jam)
+end
 
 
 # get '/users/test' do
