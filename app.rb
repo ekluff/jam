@@ -126,6 +126,12 @@ post '/jams/new' do
   end
 end
 
+get '/jams/:id/edit' do
+  @session = Session.find(params.fetch('id'))
+  @instruments = Instrument.all
+  erb(:jam_edit)
+end
+
 patch '/jams/:id/edit' do
   session_id = params.fetch("id")
   @session = Session.find(session_id)
@@ -136,10 +142,15 @@ patch '/jams/:id/edit' do
   host_id = params.fetch('host_id')
   date = params.fetch('date')
   time = params.fetch('time')
+  @session.update({:host_id => host_id, :address => address, :city => city, :state => state, :zip => zip, :date => date, :time => time})
+  @session.instruments.destroy_all
 
   instrument_id = params.fetch('instrument_id')
 
-  @session.update({:host_id => host_id, :address => address, :city => city, :state => state, :zip => zip, :date => date, :time => time})
+  instrument_id.each do |id|
+    i = Instrument.find(id)
+    @session.instruments.push(i)
+  end
   redirect("/jams/#{@session.id}")
 end
 

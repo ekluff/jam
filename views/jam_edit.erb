@@ -1,5 +1,5 @@
 <div id="fullpage">
-  <form class="col s12" action="/jams/<%@session.id%>/edit" method="post">
+  <form class="col s12" action="/jams/<%=@session.id%>/edit" method="post">
     <input type="hidden" name="_method" value="patch">
     <input type="hidden" value="<%= session[:user].id %>" name="host_id">
     <div class="section" id="create_form">
