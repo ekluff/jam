@@ -63,6 +63,16 @@ end
 #
 # end
 
+post '/users/:id/image/edit' do
+  tempfile = params['image'][:tempfile]
+  filename = params['image'][:filename]
+  id = params.fetch('id')
+  user = User.find(id)
+  file = file.copy(tempfile.path, "./public/img/avatar/#{filename}")
+  user.update({image_url: file.path})
+  redirect "/users/#{user.id}"
+end
+
 patch '/users/:id/update' do
   id = params.fetch('id')
   user = User.find(id)
