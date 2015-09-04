@@ -1,6 +1,5 @@
 var main = function(){
 
-  $('.scrollspy').scrollSpy();
   console.log("Hello World");
 
   $(window).scroll(function() {

@@ -243,13 +243,16 @@ h3 {
   position: absolute;
   right: 0;
   left: 0;
+  bottom: 2rem;
   text-align: center;
 }
 
 .up-arrow {
   display: block;
+  position: absolute;
   right: 0;
   left: 0;
+  top: 4rem;
   text-align: center;
 }
 

@@ -55,9 +55,11 @@
         </div>
       </div>
     </div>
+    <a href="#edit_profile"><i class="down-arrow medium deep-orange-text text-darken-3 material-icons">keyboard_arrow_down</i></a>
   </div>
 
   <div id="edit_profile" class="section">
+    <a href="#profile"><i class="up-arrow medium deep-orange-text text-darken-3 material-icons">keyboard_arrow_up</i></a>
     <form class="col s12" action="/users/<%= @user.id %>/update" method="post">
       <input type="hidden" name="_method" value="patch">
       <div class="row">
@@ -150,6 +152,4 @@
       <input type="file" name="image">
       <button type="submit" name="submit">save</button>
     </form>
-
-
   </div> -->
