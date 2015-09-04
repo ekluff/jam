@@ -12,7 +12,7 @@
         <% if @sessions.any?() %>
             <ol type="A">
               <% @sessions.each() do |session| %>
-                <li><a href="/jams/<%= session.id %>"><%= session.date %> at <%= session.address %></a></li>
+                <li><a href="/jams/<%= session.id %>"><%= session.date %> at <%= session.address %>, <%=session.city%> <%=session.state%> </a></li>
                 <div class="divider deep-orange darken-3 list-divider"></div>
                 <p></p>
               <% end %>
