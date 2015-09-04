@@ -145,7 +145,7 @@ post '/signup' do
   end
 end
 
-post '/signin' do
+post '/users/signin' do
   username = params.fetch("username")
   password = params.fetch("password")
   @user = User.find_by(:username => username)
