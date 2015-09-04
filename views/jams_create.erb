@@ -1,115 +1,106 @@
 <div id="fullpage">
-  <div class="section" id="create_form">
-   <div class="container">
-
-    <div class="row jam-card">
-      <h2 class="col s12 deep-orange-text text-darken-4 center-align">CREATE A JAM</h2>
-    </div>
-
-    <div class="row">
-      <div class="col s12">
-        <div class="card white-transparent hoverable jam-card">
-          <div class="card-content grey-text text-darken-3">
-            <h5 class="deep-orange-text text-darken-3">PICK WHEN AND WHERE</h5>
-          <div class="row">
-
-            <form class="col s12" action="/jams/new" method="post">
-              <input type="hidden" value="<%= session[:user].id %>" name="host_id">
-              <div class="row">
-                <div class="input-field col s12 m6">
-                  <i class="material-icons prefix">today</i>
-                  <input name="date" type="date" class="datepicker" value="<%= Date.today %>"></input>
-                  <label for="date">Time</label>
-                </div>
-                <div class="input-field col s12 m6">
-                  <i class="material-icons prefix">access_time</i>
-                  <input id="pick-a-time" name="time" value="08:30 PM"></input>
+  <form class="col s12" action="/jams/new" method="post">
+    <input type="hidden" value="<%= session[:user].id %>" name="host_id">
+    <div class="section" id="create_form">
+      <div class="container">
+        <div class="row jam-card">
+          <h2 class="col s12 deep-orange-text text-darken-4 center-align">CREATE A JAM</h2>
+        </div>
+        <div class="row">
+          <div class="col s12">
+            <div class="card white-transparent hoverable jam-card">
+              <div class="card-content grey-text text-darken-3">
+                <h5 class="deep-orange-text text-darken-3">PICK WHEN AND WHERE</h5>
+                <div class="row">
+                  <div class="row">
+                    <div class="input-field col s12 m6">
+                      <i class="material-icons prefix">today</i>
+                      <input name="date" type="date" class="datepicker" value="<%= Date.today %>"></input>
+                      <label for="date">Time</label>
+                    </div>
+                    <div class="input-field col s12 m6">
+                      <i class="material-icons prefix">access_time</i>
+                      <input id="pick-a-time" name="time" value="08:30 PM"></input>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <i class="material-icons prefix">my_location</i>
+                      <input id="icon-prefix" name="address" type="text" placeholder="">
+                      <label for="icon-prefix">Street</label>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="input-field col s12 m4">
+                      <i class="material-icons prefix">place</i>
+                      <input id="icon-prefix" name="city" type="text" placeholder="">
+                      <label for="icon-prefix">City</label>
+                    </div>
+                    <div id="dropdown" class="input-field col s12 m4">
+                      <input id="icon-prefix" name="state" type="text" placeholder="">
+                      <label for="icon-prefix">State (abbrev.)</label>
+                    </div>
+                    <div class="input-field col s12 m4">
+                      <input id="icon-prefix" name="zip" type="text" placeholder="">
+                      <label for="icon-prefix">Zip</label>
+                    </div>
+                  </div>
+                  <a href="#create_form_2" class="button waves-effect waves-light btn deep-orange darken-3 right" >ADD INSTRUMENTS</a>
                 </div>
               </div>
-
-              <div class="row">
-                <div class="input-field col s12">
-                  <i class="material-icons prefix">my_location</i>
-                  <input id="icon-prefix" name="address" type="text" placeholder="">
-                  <label for="icon-prefix">Street</label>
-                </div>
-              </div>
-              <div class="row">
-                <div class="input-field col s12 m4">
-                  <i class="material-icons prefix">place</i>
-                  <input id="icon-prefix" name="city" type="text" placeholder="">
-                  <label for="icon-prefix">City</label>
-                </div>
-                <div id="dropdown" class="input-field col s12 m4">
-                  <input id="icon-prefix" name="state" type="text" placeholder="">
-                  <label for="icon-prefix">State (abbrev.)</label>
-                </div>
-                <div class="input-field col s12 m4">
-                  <input id="icon-prefix" name="zip" type="text" placeholder="">
-                  <label for="icon-prefix">Zip</label>
-                </div>
-              </div>
-              <button type="submit" class="waves-effect waves-light btn deep-orange darken-3 right" >ADD INSTRUMENTS</button>
-            </form>
             </div>
           </div>
         </div>
       </div>
-     </div>
-   </div>
- </div>
-
-  <div class="section" id="create_form_2">
-    <div class="row">
     </div>
-
-   <div class="container">
-     <div class="row">
-       <div class="col s12">
-         <div class="card white-transparent hoverable instrument-card">
-           <div class="card-content grey-text text-darken-3">
-             <h5 class="deep-orange-text text-darken-3">PICK THE OTHER INSTRUMENTS</h5>
-                 <div class="row">
-                   <form class="col s12" action="/jams/new/instruments" method="post">
-                     <% if session[:jam] != nil %>
-                     <input type="hidden" value="<%= session[:jam].id %>" name="session_id">
-                     <% end %>
-                     <div class="input-field col s3">
-                      <% @instruments[0..9].each do |instrument| %>
-                        <div class="row">
-                          <input type="checkbox" name="instrument[]" id="instrument<%=instrument.id%>" />
-                          <label for="instrument<%=instrument.id%>" value="<%=instrument.id%>"><%= instrument.name %> </label>
-                        </div>
-                      <% end %>
-                     </div>
-                     <div class="input-field col s3">
-                      <% @instruments[10..19].each do |instrument| %>
-                        <div class="row">
-                          <input type="checkbox" name="instrument[]" id="instrument<%=instrument.id%>" />
-                          <label for="instrument<%=instrument.id%>" value="<%=instrument.id%>"><%= instrument.name %> </label>
-                        </div>
-                      <% end %>
-                     </div>
-                     <div class="input-field col s3">
-                      <% @instruments[20..29].each do |instrument| %>
-                        <div class="row">
-                          <input type="checkbox" name="instrument[]" id="instrument<%=instrument.id%>" />
-                          <label for="instrument<%=instrument.id%>" value="<%=instrument.id%>"><%= instrument.name %> </label>
-                        </div>
-                      <% end %>
-                     </div>
-                   <div class="row">
-                     <div class="input-field col s12">
-                       <button type="submit" class="waves-effect waves-light btn deep-orange darken-3 right" >JAM</button>
-                     </form>
-                     </div>
-                   </div>
-             </div>
-           </div>
-         </div>
-       </div>
+    <div class="section" id="create_form_2">
+      <div class="row">
+      </div>
+      <div class="container">
+        <div class="row">
+          <div class="col s12">
+            <div class="card white-transparent hoverable instrument-card">
+              <div class="card-content grey-text text-darken-3">
+                <h5 class="deep-orange-text text-darken-3">PICK THE OTHER INSTRUMENTS</h5>
+                <div class="row">
+                  <% if session[:jam] != nil %>
+                  <input type="hidden" value="<%= session[:jam].id %>" name="session_id">
+                  <% end %>
+                  <div class="input-field col s3">
+                    <% @instruments[0..9].each do |instrument| %>
+                    <div class="row">
+                      <input type="checkbox" name="instrument_id[]" id="instrument<%=instrument.id%>" value="<%=instrument.id%>" />
+                      <label for="instrument<%=instrument.id%>" value="<%=instrument.id%>"><%= instrument.name %> </label>
+                    </div>
+                    <% end %>
+                  </div>
+                  <div class="input-field col s3">
+                    <% @instruments[10..19].each do |instrument| %>
+                    <div class="row">
+                      <input type="checkbox" name="instrument_id[]" id="instrument<%=instrument.id%>" value="<%=instrument.id%>" />
+                      <label for="instrument<%=instrument.id%>" value="<%=instrument.id%>"><%= instrument.name %> </label>
+                    </div>
+                    <% end %>
+                  </div>
+                  <div class="input-field col s3">
+                    <% @instruments[20..29].each do |instrument| %>
+                    <div class="row">
+                      <input type="checkbox" name="instrument_id[]" id="instrument<%=instrument.id%>" value="<%=instrument.id%>" />
+                      <label for="instrument<%=instrument.id%>" value="<%=instrument.id%>"><%= instrument.name %> </label>
+                    </div>
+                    <% end %>
+                  </div>
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <button type="submit" class="waves-effect waves-light btn deep-orange darken-3 right" >JAM</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-   </div>
- </div>
-
+  </div>
 </div>

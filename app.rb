@@ -92,6 +92,7 @@ get '/jams/new' do
 end
 
 post '/jams/new' do
+  binding.pry
   address = params.fetch('address')
   city = params.fetch('city').capitalize
   state = params.fetch('state').upcase
@@ -99,25 +100,34 @@ post '/jams/new' do
   host_id = params.fetch('host_id')
   date = params.fetch('date')
   time = params.fetch('time')
+
+  instrument_id = params.fetch('instrument_id')
+
   @session = Session.create({:host_id => host_id, :address => address, :city => city, :state => state, :zip => zip, :date => date, :time => time})
+
   if @session.save
-    session[:jam] = @session
-    redirect('/jams/new#create_form_2')
+    instrument_id.each do |id|
+      i = Instrument.find(id)
+      @session.instruments.push(i)
+    end
+    redirect("/jams/#{@session.id}")
   else
     erb(:errors)
   end
 end
-
-post '/jams/new/instruments' do
-  if session[:jam] == nil
-    redirect('/jams/new')
-  end
-  instruments = params.fetch("instrument[]")
-  instruments.each do |instrument|
-    session[:jam].instruments << instrument
-  end
-  redirect("/jams/#{session[:jam].id}")
-end
+#
+# post '/jams/:id/instruments/new' do
+#   binding.pry
+#   if session[:jam] == nil
+#     binding.pry
+#     redirect('/jams/new')
+#   end
+#   instruments = params.fetch("instrument_id")
+#   instruments.each do |instrument|
+#     Session.find(session[:session_id].to_i).instruments << instrument
+#   end
+#   redirect("/jams/#{session[:session_id].to_i}")
+# end
 
 get '/jams/:id' do
   session[:jam] = nil
@@ -160,7 +170,6 @@ post '/users/signin' do
   username = params.fetch("username")
   password = params.fetch("password")
   @user = User.find_by(:username => username)
-  # binding.pry
 
   if @user == nil
     erb :errors
