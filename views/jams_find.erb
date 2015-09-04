@@ -7,15 +7,23 @@
 
 <div class="row">
   <div class="col s12 m6">
-    <% if @sessions.any?() %>
-        <ol type="A">
-          <% @sessions.each() do |session| %>
-           <li><a href="/jams/<%= session.id %>"><%= session.date %> at <%= session.address %>, <%= session.city %>, <%= session.state %></a></li>
-          <% end %>
-        </ol>
-        <p style="display:none;" class="lat"><%= session.latitude %></p>
-        <p style="display:none;" class="lng"><%= session.longitude %></p>
-    <% end %>
+    <div class="card white-transparent">
+      <div class="card-content grey-text text-darken-3">
+        <% if @sessions.any?() %>
+            <ol type="A">
+              <% @sessions.each() do |session| %>
+                <li><a href="/jams/<%= session.id %>"><%= session.date %> at <%= session.address %></a></li>
+                <div class="divider deep-orange darken-3 list-divider"></div>
+                <p></p>
+              <% end %>
+            </ol>
+            <% @sessions.each() do |session| %>
+              <p style="display:none;" class="lat"><%= session.latitude %></p>
+              <p style="display:none;" class="lng"><%= session.longitude %></p>
+            <% end %>
+        <% end %>
+      </div>
+    </div>
   </div>
 
   <div class="col s12 m6 right">

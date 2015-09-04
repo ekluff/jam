@@ -306,3 +306,8 @@ html {
   margin-bottom: 2%;
   margin-right: 2%;
 }
+
+.list-divider {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
