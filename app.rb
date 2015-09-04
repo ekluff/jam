@@ -100,17 +100,27 @@ post '/jams/new' do
   date = params.fetch('date')
   time = params.fetch('time')
   @session = Session.create({:host_id => host_id, :address => address, :city => city, :state => state, :zip => zip, :date => date, :time => time})
-  if @session.save == false
+  if @session.save
+    session[:jam] = @session
+    redirect('/jams/new#create_form_2')
+  else
     erb(:errors)
   end
-  instruments = params.fetch('instrument[]')
-  instruments.each do |instrument|
-    instrument.sessions << @session
+end
+
+post '/jams/new/instruments' do
+  if session[:jam] == nil
+    redirect('/jams/new')
   end
-  redirect("/jams/#{@session.id}")
+  instruments = params.fetch("instrument[]")
+  instruments.each do |instrument|
+    session[:jam].instruments << instrument
+  end
+  redirect("/jams/#{session[:jam].id}")
 end
 
 get '/jams/:id' do
+  session[:jam] = nil
   @session = Session.find(params.fetch('id'))
   @instruments = @session.instruments()
   session[:user] = User.find(1)

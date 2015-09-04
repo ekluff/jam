@@ -12,7 +12,9 @@
           <div class="card-content grey-text text-darken-3">
             <h5 class="deep-orange-text text-darken-3">PICK WHEN AND WHERE</h5>
           <div class="row">
+
             <form class="col s12" action="/jams/new" method="post">
+              <input type="hidden" value="<%= session[:user].id %>" name="host_id">
               <div class="row">
                 <div class="input-field col s12 m6">
                   <i class="material-icons prefix">today</i>
@@ -47,18 +49,18 @@
                   <label for="icon-prefix">Zip</label>
                 </div>
               </div>
+              <button type="submit" class="waves-effect waves-light btn deep-orange darken-3 right" >ADD INSTRUMENTS</button>
+            </form>
             </div>
           </div>
         </div>
       </div>
      </div>
-     <a href="#create_form_2"><i id="down-arrow" class="down-arrow medium deep-orange-text text-darken-3 material-icons">keyboard_arrow_down</i></a>
    </div>
  </div>
 
   <div class="section" id="create_form_2">
     <div class="row">
-     <a href="#create_form" class="center-arrow"><i class="up-arrow medium deep-orange-text text-darken-3 material-icons">keyboard_arrow_up</i></a>
     </div>
 
    <div class="container">
@@ -68,42 +70,46 @@
            <div class="card-content grey-text text-darken-3">
              <h5 class="deep-orange-text text-darken-3">PICK THE OTHER INSTRUMENTS</h5>
                  <div class="row">
-                   <div class="input-field col s3 offset-s2">
-                    <% @instruments[0..9].each do |instrument| %>
-                      <div class="row">
-                        <input type="checkbox" name="instrument[]" id="instrument<%=instrument.id%>" />
-                        <label for="instrument<%=instrument.id%>" value="<%=instrument.id%>"><%= instrument.name %></label>
-                      </div>
-                    <% end %>
+                   <form class="col s12" action="/jams/new/instruments" method="post">
+                     <% if session[:jam] != nil %>
+                     <input type="hidden" value="<%= session[:jam].id %>" name="session_id">
+                     <% end %>
+                     <div class="input-field col s3">
+                      <% @instruments[0..9].each do |instrument| %>
+                        <div class="row">
+                          <input type="checkbox" name="instrument[]" id="instrument<%=instrument.id%>" />
+                          <label for="instrument<%=instrument.id%>" value="<%=instrument.id%>"><%= instrument.name %> </label>
+                        </div>
+                      <% end %>
+                     </div>
+                     <div class="input-field col s3">
+                      <% @instruments[10..19].each do |instrument| %>
+                        <div class="row">
+                          <input type="checkbox" name="instrument[]" id="instrument<%=instrument.id%>" />
+                          <label for="instrument<%=instrument.id%>" value="<%=instrument.id%>"><%= instrument.name %> </label>
+                        </div>
+                      <% end %>
+                     </div>
+                     <div class="input-field col s3">
+                      <% @instruments[20..29].each do |instrument| %>
+                        <div class="row">
+                          <input type="checkbox" name="instrument[]" id="instrument<%=instrument.id%>" />
+                          <label for="instrument<%=instrument.id%>" value="<%=instrument.id%>"><%= instrument.name %> </label>
+                        </div>
+                      <% end %>
+                     </div>
+                   <div class="row">
+                     <div class="input-field col s12">
+                       <button type="submit" class="waves-effect waves-light btn deep-orange darken-3 right" >JAM</button>
+                     </form>
+                     </div>
                    </div>
-                   <div class="input-field col s3">
-                    <% @instruments[10..19].each do |instrument| %>
-                      <div class="row">
-                        <input type="checkbox" name="instrument[]" id="instrument<%=instrument.id%>" />
-                        <label for="instrument<%=instrument.id%>" value="<%=instrument.id%>"><%= instrument.name %></label>
-                      </div>
-                    <% end %>
-                   </div>
-                   <div class="input-field col s3">
-                    <% @instruments[20..29].each do |instrument| %>
-                      <div class="row">
-                        <input type="checkbox" name="instrument[]" id="instrument<%=instrument.id%>" />
-                        <label for="instrument<%=instrument.id%>" value="<%=instrument.id%>"><%= instrument.name %></label>
-                      </div>
-                    <% end %>
-                   </div>
-                 </div>
-                 <div class="row">
-                   <div class="input-field col s12">
-                     <button type="submit" class="waves-effect waves-light btn deep-orange darken-3 right" >JAM</button>
-                   </form>
-                   </div>
-                 </div>
              </div>
            </div>
          </div>
        </div>
     </div>
    </div>
+ </div>
 
 </div>
