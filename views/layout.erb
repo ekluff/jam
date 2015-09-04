@@ -33,8 +33,8 @@
           <li><a class='deep-orange-text text-darken-3 center-align' href='/users/<%=session[:user].id%>'><%= session[:user].first_name %> <%=session[:user].last_name%></a></li>
           <li><a class='deep-orange-text text-darken-3 center-align' href='/signout'>Sign Out</a></li>
           <% else %>
-          <li><a href="/signup" class="deep-orange-text text-darken-3 center-align">Sign Up</a></li>
-          <li><a href="#signin" class="deep-orange-text text-darken-3 center-align modal-trigger">Sign In</a></li>
+          <li class="right"><a href="/signup" class="deep-orange-text text-darken-3 center-align">Sign Up</a></li>
+          <li class="right"><a href="#signin" class="deep-orange-text text-darken-3 center-align modal-trigger">Sign In</a></li>
 
           <div id="signin" class="modal">
             <div class="modal-content">
