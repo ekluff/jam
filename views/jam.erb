@@ -51,13 +51,21 @@
                       <h5><%=instrument.name%> </h5>
                     </div>
                     <% if session[:user] != nil %>
-                    <div class="col s6 l3">
+                    <div class="col s3 l2">
                       <form action="/jams/<%=@session.id%>/users/<%= session[:user].id %>" method="post">
                         <input name="user_id" type="hidden" value="<%=session[:user].id%>">
                         <input name="instrument_id" type="hidden" value="<%=instrument.id%>">
                         <button class="waves-effect waves-light btn deep-orange darken-3 white-text" type="submit">I'll Play It!</button>
                       </form>
                     </div>
+                      <% if session[:user].id == @session.host_id %>
+                        <div class="col s3 l1">
+                          <form action="/jams/<%=@session.id%>/instruments/<%=instrument.id%>" method="post">
+                            <input name="_method" type="hidden" value="delete">
+                            <button class="waves-effect waves-light btn red darken-3 white-text" type="submit"><i class="medium material-icons">delete</i></button>
+                          </form>
+                        </div>
+                      <% end %>
                     <% end %>
                   </div>
                 <% end %>

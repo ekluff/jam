@@ -147,7 +147,6 @@ patch '/jams/:id/edit' do
   date = params.fetch('date')
   time = params.fetch('time')
   @session.update({:host_id => host_id, :address => address, :city => city, :state => state, :zip => zip, :date => date, :time => time})
-  @session.instruments.destroy_all
 
   instrument_id = params.fetch('instrument_id')
 
@@ -174,8 +173,15 @@ post '/jams/:id/users/:user_id' do
     redirect("/jams/#{@session.id}")
   else
     @session.users << @user
-    @session.instruments.delete(@instrument)
+    @session.instruments.destroy(@instrument)
   end
+  redirect("/jams/#{@session.id}")
+end
+
+delete '/jams/:id/instruments/:instrument_id' do
+  @session = Session.find(params.fetch('id'))
+  @instrument = Instrument.find(params.fetch('instrument_id'))
+  @session.instruments.delete(@instrument)
   redirect("/jams/#{@session.id}")
 end
 
