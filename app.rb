@@ -139,8 +139,12 @@ post '/jams/:id/users/:user_id' do
   @session = Session.find(params.fetch('id'))
   @user = User.find(params.fetch('user_id'))
   @instrument = Instrument.find(params.fetch('instrument_id'))
-  @session.users << @user
-  @session.instruments.delete(@instrument)
+  if @session.users.include?(@user)
+    redirect("/jams/#{@session.id}")
+  else
+    @session.users << @user
+    @session.instruments.delete(@instrument)
+  end
   redirect("/jams/#{@session.id}")
 end
 
