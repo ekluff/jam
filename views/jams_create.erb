@@ -63,9 +63,6 @@
               <div class="card-content grey-text text-darken-3">
                 <h5 class="deep-orange-text text-darken-3">PICK THE OTHER INSTRUMENTS</h5>
                 <div class="row">
-                  <% if session[:jam] != nil %>
-                  <input type="hidden" value="<%= session[:jam].id %>" name="session_id">
-                  <% end %>
                   <div class="input-field col s3">
                     <% @instruments[0..9].each do |instrument| %>
                     <div class="row">

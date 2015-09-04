@@ -92,7 +92,6 @@ get '/jams/new' do
 end
 
 post '/jams/new' do
-  binding.pry
   address = params.fetch('address')
   city = params.fetch('city').capitalize
   state = params.fetch('state').upcase
