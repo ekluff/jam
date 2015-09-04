@@ -182,7 +182,7 @@ post '/signup' do
   @user = User.create({:first_name => first_name, :last_name => last_name, :email => email, :username => username, :password => password_hash, :phone => phone, :address => address, :city => city, :state => state, :zip => zip})
   if @user.save()
     session[:user] = @user
-    redirect "/users/#{session[:user].id}"
+    redirect "/users/#{@user.id}"
   else
     erb(:errors)
   end
@@ -195,6 +195,7 @@ post '/users/signin' do
   @user = User.find_by(:username => username)
 
   if @user == nil
+    @incorrect_password == true
     erb :errors
   elsif @user.authenticate(password)
     session[:user] = @user

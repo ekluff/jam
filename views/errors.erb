@@ -3,23 +3,24 @@
     <h1>Errors</h1>
   </div>
 </div>
+
 <div class="row">
   <div class="col s12">
     <% if @password_confirmation_error %>
-    <p class="teal-text text-darken-2"> Your password and password confirmation did not match.</p>
+    <p class="deep-orange-text text-darken-3"> Your password and password confirmation did not match.</p>
   </div>
 </div>
 <div class="row">
   <div class="col s12">
-    <% elsif @password_error != nil %>
-    <p class="teal-text text-darken-2"> We didn't recognize that email and password combo.</p>
+    <% elsif @incorrect_password_error %>
+    <p class="deep-orange-text text-darken-3"> We didn't recognize that email and password combo.</p>
   </div>
 </div>
 <div class="row">
   <div class="col s12">
     <% elsif @user != nil %>
       <% @user.errors().full_messages().each() do |message| %>
-      <p class="teal-text text-darken-2"><%= message %></p>
+      <p class="deep-orange-text text-darken-3"><%= message %></p>
       <% end %>
   </div>
 </div>
@@ -27,8 +28,8 @@
 <div class="row">
   <div class="col s12">
     <% else %>
-    <p class="teal-text text-darken-2">We're sorry, there was an error. Please go back and retry.</p>
+    <p class="deep-orange-text text-darken-3">We're sorry, there was an error. Please go back and retry.</p>
   </div>
 </div>
    <% end %>
-<a class="waves-effect waves-light btn" href="/">Back</a>
+<a class="waves-effect waves-light btn deep-orange darken-3" href="/">Back</a>
