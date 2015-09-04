@@ -344,6 +344,10 @@ html {
   margin-left: 1rem;
 }
 
+#profile-email a  {
+  display: inline;
+}
+
 /*hexagon generation for user avatar, found at http://jsfiddle.net/kizu/bhGn4/ */
 
 .hexagon {

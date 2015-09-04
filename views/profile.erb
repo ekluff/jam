@@ -34,7 +34,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="col s12 m3">
+                <div class="col s12 m6">
                   <div class="padded-row row">
                     <div class="col s12">
                       <i class="material-icons left">person</i>
@@ -49,9 +49,9 @@
                     </div>
                   </div>
                   <div class="padded-row row">
-                    <div class="col s12">
+                    <div id="profile-email" class="col s12">
                       <i class="material-icons left">email</i>
-                      <%= @user.email %>
+                      <a href="mailto:<%= @user.email %>?Subject=Your%20jam%20session"><%= @user.email %></a>
                     </div>
                   </div>
                   <% if @profile_owner == true %>
@@ -81,16 +81,31 @@
                     </form>
                   </center>
                 </div>
+
                 <div class="col m6 s12">
                   <a href="#edit_profile" class="waves-effect waves-light btn deep-orange darken-3 right">edit</a>
                 </div>
               </div>
+              <% else %>
+              <div class="row">
+                <div class="col s12">
+                  <a href="#profile_owner_jams" class="waves-effect waves-light btn deep-orange darken-3 right"><%= @user.username %>'s jams</a>
+                </div>
+              </div>
+              <% end %>
             </div>
           </div>
         </div>
       </div>
-      <a href="#edit_profile"><i class="down-arrow medium deep-orange-text text-darken-3 material-icons">keyboard_arrow_down</i></a>
     </div>
+
+
+    <a href="<% if @profile_owner %>#edit_profile<% else %>#profile_owner_jams<% end %>"><i class="down-arrow medium deep-orange-text text-darken-3 material-icons">keyboard_arrow_down</i></a>
+
+  </div>
+
+  <% if @profile_owner %>
+
     <div id="edit_profile" class="section">
       <a href="#profile"><i class="up-arrow medium deep-orange-text text-darken-3 material-icons">keyboard_arrow_up</i></a>
       <form class="col s12" action="/users/<%= @user.id %>/update" method="post">
@@ -177,8 +192,60 @@
         </div>
       </form>
     </div>
-    <% end %>
+  <% else %>
 
-    <div class="row">
+  <div id="profile_owner_jams" class="section">
+    <a href="#profile"><i class="up-arrow medium deep-orange-text text-darken-3 material-icons">keyboard_arrow_up</i></a>
+  </div>
 
+  <div class="row">
+    <h3 class="col s12 deep-orange-text text-darken-4 center-align"><% @user.username %>'s jams</h3>
+  </div>
+
+  <div class="row">
+    <div class="col s12">
+      <div class="card white-transparent hoverable">
+        <div class="card-content grey-text text-darken-3">
+          <div class="row">
+            <div class="col s12">
+              <% if @user.sessions.any?  %>
+                <ul>
+                  <% @user.sessions.each do |s| %>
+                    <li>
+                      <a href="/jams/<%= s.id %>"><%= s.date %> at <%= s.address %>, <%=s.city%> <%=s.state%></a>
+                    </li>
+                  <% end %>
+                </ul>
+              <% else %>
+                <%= @user.username %> has no jams scheduled! You should <a href="mailto:<%= @user.email %>?Subject=Your%20jam%20session"><%= @user.email %></a> and ask them to jam.
+              <% end %>
+
+
+
+                <% if @sessions.any?() %>
+                    <ol type="A">
+                      <% @sessions.each() do |session| %>
+                        <li><a href="/jams/<%= session.id %>"><%= session.date %> at <%= session.address %>, <%=session.city%> <%=session.state%> </a></li>
+                        <div class="divider deep-orange darken-3 list-divider"></div>
+                        <p></p>
+                      <% end %>
+                    </ol>
+                    <% @sessions.each() do |session| %>
+                      <p style="display:none;" class="lat"><%= session.latitude %></p>
+                      <p style="display:none;" class="lng"><%= session.longitude %></p>
+                    <% end %>
+                <% end %>
+
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
+
+
+  <% end %>
+
+
+
+</div>
